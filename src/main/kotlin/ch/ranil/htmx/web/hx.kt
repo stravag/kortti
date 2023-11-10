@@ -1,4 +1,4 @@
-package ch.ranil.plugins
+package ch.ranil.htmx.web
 
 import kotlinx.html.HTMLTag
 

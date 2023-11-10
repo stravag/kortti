@@ -1,5 +1,6 @@
 package ch.ranil
 
+import ch.ranil.htmx.web.configureRouting
 import ch.ranil.plugins.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
