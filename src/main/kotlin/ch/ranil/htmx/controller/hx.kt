@@ -1,4 +1,4 @@
-package ch.ranil.htmx.web
+package ch.ranil.htmx.controller
 
 import kotlinx.html.HTMLTag
 

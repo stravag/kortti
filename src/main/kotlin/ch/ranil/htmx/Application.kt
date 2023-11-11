@@ -3,7 +3,7 @@ package ch.ranil.htmx
 import ch.ranil.htmx.domain.AdventCalendarRepository
 import ch.ranil.htmx.domain.AdventCalendarService
 import ch.ranil.htmx.persistence.AdventCalendarRepositoryImpl
-import ch.ranil.htmx.web.configureRouting
+import ch.ranil.htmx.controller.configureController
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
@@ -20,7 +20,7 @@ fun main() {
         install(Koin) {
             modules(appModule)
         }
-        configureRouting()
+        configureController()
     }.start(wait = true)
 }
 

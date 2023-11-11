@@ -1,4 +1,4 @@
-package ch.ranil.htmx.web
+package ch.ranil.htmx.controller
 
 import ch.ranil.htmx.domain.AdventCalendarService
 import io.ktor.server.application.*
@@ -11,7 +11,7 @@ import java.time.LocalDateTime
 
 const val STATIC_PATH = "/static"
 
-fun Application.configureRouting() {
+fun Application.configureController() {
 
     val adventCalendarService by inject<AdventCalendarService>()
 
@@ -37,7 +37,6 @@ fun Application.configureRouting() {
                 body { p { +"Ping at ${LocalDateTime.now()}" } }
             }
         }
-        // Static plugin. Try to access `/static/index.html`
         staticResources(STATIC_PATH, basePackage = STATIC_PATH)
     }
 }

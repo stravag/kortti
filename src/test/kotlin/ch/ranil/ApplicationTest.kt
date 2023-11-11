@@ -1,7 +1,6 @@
 package ch.ranil
 
-import ch.ranil.htmx.web.configureRouting
-import ch.ranil.plugins.*
+import ch.ranil.htmx.controller.configureController
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
@@ -12,11 +11,11 @@ class ApplicationTest {
     @Test
     fun testRoot() = testApplication {
         application {
-            configureRouting()
+            configureController()
         }
         client.get("/").apply {
             assertEquals(HttpStatusCode.OK, status)
-            assertEquals("Hello World!", bodyAsText())
+            assertTrue(bodyAsText().contains("Hello Htmx"))
         }
     }
 }
