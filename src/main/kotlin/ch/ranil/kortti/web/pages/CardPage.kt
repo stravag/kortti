@@ -1,9 +1,11 @@
 package ch.ranil.kortti.web.pages
 
 import ch.ranil.kortti.domain.Card
+import ch.ranil.kortti.domain.CardEntry
 import ch.ranil.kortti.web.STATIC_PATH
-import ch.ranil.kortti.web.utils.hxBoost
-import ch.ranil.kortti.web.utils.hxPost
+import ch.ranil.kortti.web.utils.htmx.*
+import ch.ranil.kortti.web.utils.htmx.HxSwap.AFTER_BEGIN
+import ch.ranil.kortti.web.utils.htmx.HxSwap.BEFORE_END
 import io.ktor.server.application.*
 import io.ktor.server.html.*
 import io.ktor.util.pipeline.*
@@ -15,10 +17,19 @@ suspend fun PipelineContext<Unit, ApplicationCall>.renderCardPage(card: Card) {
         body {
             hxBoost()
             h1 { +"Card" }
-            p { +"$card" }
+            p { +"${card.id}" }
             button {
                 hxPost("/card/${card.id.value}")
+                hxTarget("#entries")
+                hxSwap(AFTER_BEGIN)
+                hxSelect("ul li:first-child")
                 +"Add entry"
+            }
+            ul {
+                id = "entries"
+                card.entries.forEach {
+                    renderCardEntryFragment(it)
+                }
             }
         }
     }
@@ -34,5 +45,9 @@ suspend fun PipelineContext<Unit, ApplicationCall>.renderMissingCardPage() {
     }
 }
 
-suspend fun BODY.renderCardEntryFragment() {
+fun UL.renderCardEntryFragment(cardEntry: CardEntry) {
+    li {
+        p { +"${cardEntry.dateTime}" }
+        p { +cardEntry.text }
+    }
 }

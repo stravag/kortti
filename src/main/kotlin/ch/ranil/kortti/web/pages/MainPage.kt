@@ -1,7 +1,7 @@
 package ch.ranil.kortti.web.pages
 
 import ch.ranil.kortti.web.STATIC_PATH
-import ch.ranil.kortti.web.utils.hxBoost
+import ch.ranil.kortti.web.utils.htmx.hxBoost
 import io.ktor.server.application.*
 import io.ktor.server.html.*
 import io.ktor.util.pipeline.*
