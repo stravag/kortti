@@ -1,6 +1,6 @@
-package ch.ranil.htmx.controller
+package ch.ranil.kortti.controller
 
-import ch.ranil.htmx.domain.AdventCalendarService
+import ch.ranil.kortti.domain.AdventCalendarService
 import io.ktor.server.application.*
 import io.ktor.server.html.*
 import io.ktor.server.http.content.*

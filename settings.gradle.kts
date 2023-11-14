@@ -1,1 +1,1 @@
-rootProject.name = "ktor-htmx"
+rootProject.name = "kortti"

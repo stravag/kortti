@@ -1,6 +1,6 @@
-package ch.ranil.htmx.persistence
+package ch.ranil.kortti.persistence
 
-import ch.ranil.htmx.domain.AdventCalendarRepository
+import ch.ranil.kortti.domain.AdventCalendarRepository
 import org.slf4j.LoggerFactory
 
 class AdventCalendarRepositoryImpl : AdventCalendarRepository {

@@ -1,4 +1,4 @@
-package ch.ranil.htmx.domain
+package ch.ranil.kortti.domain
 
 class AdventCalendarService(
     private val adventCalendarRepository: AdventCalendarRepository,
