@@ -3,6 +3,7 @@ package ch.ranil.kortti.web
 import ch.ranil.kortti.domain.CardService
 import ch.ranil.kortti.web.pages.renderCardPage
 import ch.ranil.kortti.web.pages.renderMainPage
+import ch.ranil.kortti.web.pages.renderMissingCardPage
 import ch.ranil.kortti.web.utils.pathParam
 import io.ktor.server.application.*
 import io.ktor.server.http.content.*
@@ -24,8 +25,13 @@ fun Application.configureController() {
             call.respondRedirect("/card/${card.id.value}")
         }
         get("/card/{$CARD_ID}") {
-            val card = cardService.findCard(call.pathParam(CARD_ID))
-            renderCardPage(card)
+            when (val card = cardService.findCard(call.pathParam(CARD_ID))) {
+                null -> renderMissingCardPage()
+                else -> renderCardPage(card)
+            }
+        }
+        post("/card/{$CARD_ID}") {
+            cardService.addEntryToCard(call.pathParam(CARD_ID))
         }
         staticResources(STATIC_PATH, basePackage = STATIC_PATH)
     }

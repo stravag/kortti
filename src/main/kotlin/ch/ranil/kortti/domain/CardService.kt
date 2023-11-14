@@ -1,5 +1,8 @@
 package ch.ranil.kortti.domain
 
+import java.time.LocalDateTime
+import kotlin.random.Random
+
 class CardService(
     private val cardRepository: CardRepository,
 ) {
@@ -13,5 +16,28 @@ class CardService(
 
     fun findCard(cardId: CardId): Card? {
         return cardRepository.find(cardId)
+    }
+
+    fun addEntryToCard(cardId: CardId): CardEntry {
+        val card = requireNotNull(cardRepository.find(cardId))
+
+        val charPool: List<Char> = ('a'..'z') + ('A'..'Z')
+        val randomString = (1..10)
+            .map { Random.nextInt(0, charPool.size).let { charPool[it] } }
+            .joinToString("")
+
+        val entry = CardEntry(
+            id = CardEntryId.random(),
+            dateTime = LocalDateTime.now(),
+            text = "Hello $randomString"
+        )
+
+        val extendedCard = card.copy(
+            entries = card.entries + entry
+        )
+
+        cardRepository.save(extendedCard)
+
+        return entry
     }
 }
