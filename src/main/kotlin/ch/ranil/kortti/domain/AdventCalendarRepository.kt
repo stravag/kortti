@@ -1,4 +1,4 @@
-package ch.ranil.htmx.domain
+package ch.ranil.kortti.domain
 
 interface AdventCalendarRepository {
     fun save()
