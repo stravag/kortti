@@ -40,3 +40,8 @@ fun Application.configureController() {
         staticResources(STATIC_PATH, basePackage = STATIC_PATH)
     }
 }
+
+/*
+ - Kadpata (card in sinhala)
+ -
+ */
