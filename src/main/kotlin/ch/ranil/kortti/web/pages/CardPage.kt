@@ -27,9 +27,11 @@ suspend fun PipelineContext<Unit, ApplicationCall>.renderCardPage(card: Card) {
             }
             ul {
                 id = "entries"
-                card.entries.forEach {
-                    renderCardEntryFragment(it)
-                }
+                card.entries
+                    .sortedByDescending { it.dateTime }
+                    .forEach {
+                        renderCardEntryFragment(it)
+                    }
             }
         }
     }
