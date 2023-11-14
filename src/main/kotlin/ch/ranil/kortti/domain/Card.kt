@@ -1,7 +1,7 @@
 package ch.ranil.kortti.domain
 
 import java.time.LocalDateTime
-import java.util.UUID
+import java.util.*
 
 data class Card(
     val id: CardId,
@@ -26,6 +26,5 @@ value class CardId(val value: UUID) {
 value class CardEntryId(val value: UUID) {
     companion object {
         fun random(): CardEntryId = CardEntryId(UUID.randomUUID())
-        fun parse(s: String): CardEntryId = CardEntryId(UUID.fromString(s))
     }
 }

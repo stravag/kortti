@@ -5,7 +5,6 @@ import ch.ranil.kortti.domain.CardEntry
 import ch.ranil.kortti.web.STATIC_PATH
 import ch.ranil.kortti.web.utils.htmx.*
 import ch.ranil.kortti.web.utils.htmx.HxSwap.AFTER_BEGIN
-import ch.ranil.kortti.web.utils.htmx.HxSwap.BEFORE_END
 import io.ktor.server.application.*
 import io.ktor.server.html.*
 import io.ktor.util.pipeline.*
