@@ -1,5 +1,7 @@
 package ch.ranil.kortti.domain.card
 
+import ch.ranil.kortti.domain.Id
+import ch.ranil.kortti.domain.IdFactory
 import java.time.LocalDateTime
 import java.util.*
 
@@ -15,17 +17,11 @@ data class CardEntry(
 )
 
 @JvmInline
-value class CardId(val value: UUID) {
-    companion object {
-        fun random(): CardId = CardId(UUID.randomUUID())
-        fun parse(s: String): CardId = CardId(UUID.fromString(s))
-    }
+value class CardId(override val value: UUID) : Id {
+    companion object : IdFactory<CardId>(CardId::class)
 }
 
 @JvmInline
-value class CardEntryId(val value: UUID) {
-    companion object {
-        fun random(): CardEntryId = CardEntryId(UUID.randomUUID())
-        fun parse(s: String): CardEntryId = CardEntryId(UUID.fromString(s))
-    }
+value class CardEntryId(override val value: UUID) : Id {
+    companion object : IdFactory<CardEntryId>(CardEntryId::class)
 }
