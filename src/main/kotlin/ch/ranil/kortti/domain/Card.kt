@@ -26,5 +26,6 @@ value class CardId(val value: UUID) {
 value class CardEntryId(val value: UUID) {
     companion object {
         fun random(): CardEntryId = CardEntryId(UUID.randomUUID())
+        fun parse(s: String): CardEntryId = CardEntryId(UUID.fromString(s))
     }
 }

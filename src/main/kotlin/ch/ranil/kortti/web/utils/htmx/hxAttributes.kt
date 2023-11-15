@@ -6,6 +6,10 @@ fun HTMLTag.hxPost(value: String) {
     attributes += "hx-post" to value
 }
 
+fun HTMLTag.hxDelete(value: String) {
+    attributes += "hx-delete" to value
+}
+
 fun HTMLTag.hxBoost() {
     attributes += "hx-boost" to "true"
 }

@@ -1,5 +1,6 @@
 package ch.ranil.kortti.web.utils
 
+import ch.ranil.kortti.domain.CardEntryId
 import ch.ranil.kortti.domain.CardId
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -10,8 +11,12 @@ import kotlinx.html.TagConsumer
 import kotlinx.html.emptyMap
 import java.lang.reflect.Constructor
 
-fun ApplicationCall.pathParam(name: String): CardId {
+fun ApplicationCall.cardIdPathParam(name: String): CardId {
     return CardId.parse(requireNotNull(this.parameters[name]))
+}
+
+fun ApplicationCall.cardEntryIdPathParam(name: String): CardEntryId {
+    return CardEntryId.parse(requireNotNull(this.parameters[name]))
 }
 
 suspend fun ApplicationCall.respondRedirect303(url: String) {

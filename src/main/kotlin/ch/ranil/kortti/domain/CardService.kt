@@ -40,4 +40,15 @@ class CardService(
 
         return extendedCard
     }
+
+    fun deleteEntryFromCard(cardId: CardId, cardEntryId: CardEntryId): Card {
+        val card = requireNotNull(cardRepository.find(cardId))
+        val extendedCard = card.copy(
+            entries = card.entries.filterNot { it.id == cardEntryId }
+        )
+
+        cardRepository.save(extendedCard)
+
+        return extendedCard
+    }
 }
