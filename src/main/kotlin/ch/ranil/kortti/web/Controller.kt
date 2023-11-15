@@ -5,14 +5,14 @@ import ch.ranil.kortti.web.pages.renderCardEntryFragment
 import ch.ranil.kortti.web.pages.renderCardPage
 import ch.ranil.kortti.web.pages.renderMainPage
 import ch.ranil.kortti.web.pages.renderMissingCardPage
+import ch.ranil.kortti.web.utils.inCtxOf
 import ch.ranil.kortti.web.utils.pathParam
 import io.ktor.server.application.*
 import io.ktor.server.html.*
 import io.ktor.server.http.content.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import kotlinx.html.body
-import kotlinx.html.ul
+import kotlinx.html.UL
 import org.koin.ktor.ext.inject
 
 const val STATIC_PATH = "/static"
@@ -37,7 +37,9 @@ fun Application.configureController() {
         post("/card/{$CARD_ID}") {
             val entry = cardService.addEntryToCard(call.pathParam(CARD_ID))
             call.respondHtml {
-                body { ul { renderCardEntryFragment(entry) } }
+                inCtxOf<UL> {
+                    renderCardEntryFragment(entry)
+                }
             }
         }
         staticResources(STATIC_PATH, basePackage = STATIC_PATH)

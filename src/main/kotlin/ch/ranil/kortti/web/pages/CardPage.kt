@@ -21,7 +21,6 @@ suspend fun PipelineContext<Unit, ApplicationCall>.renderCardPage(card: Card) {
                 hxPost("/card/${card.id.value}")
                 hxTarget("#entries")
                 hxSwap(AFTER_BEGIN)
-                hxSelect("ul li:first-child")
                 +"Add entry"
             }
             ul {
