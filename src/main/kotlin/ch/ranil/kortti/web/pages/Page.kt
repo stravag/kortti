@@ -4,7 +4,6 @@ import ch.ranil.kortti.web.STATIC_PATH
 import ch.ranil.kortti.web.utils.htmx.hxBoost
 import io.ktor.server.application.*
 import io.ktor.server.html.*
-import io.ktor.util.pipeline.*
 import kotlinx.html.*
 
 suspend fun ApplicationCall.renderPage(

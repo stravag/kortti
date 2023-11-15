@@ -1,7 +1,6 @@
 package ch.ranil.kortti.web.pages
 
 import io.ktor.server.application.*
-import io.ktor.util.pipeline.*
 import kotlinx.html.*
 
 suspend fun ApplicationCall.renderMainPage() {
