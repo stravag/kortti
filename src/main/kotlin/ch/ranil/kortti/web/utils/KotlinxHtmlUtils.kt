@@ -1,7 +1,9 @@
 package ch.ranil.kortti.web.utils
 
 import ch.ranil.kortti.domain.CardId
+import io.ktor.http.*
 import io.ktor.server.application.*
+import io.ktor.server.response.*
 import kotlinx.html.HTML
 import kotlinx.html.HTMLTag
 import kotlinx.html.TagConsumer
@@ -10,6 +12,11 @@ import java.lang.reflect.Constructor
 
 fun ApplicationCall.pathParam(name: String): CardId {
     return CardId.parse(requireNotNull(this.parameters[name]))
+}
+
+suspend fun ApplicationCall.respondRedirect303(url: String) {
+    response.headers.append(HttpHeaders.Location, url)
+    respond(HttpStatusCode.SeeOther)
 }
 
 inline fun <reified T : HTMLTag> HTML.inCtxOf(block: T.() -> Unit) {

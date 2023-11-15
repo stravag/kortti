@@ -11,14 +11,13 @@ import io.ktor.server.application.*
 import io.ktor.util.pipeline.*
 import kotlinx.html.*
 
-suspend fun PipelineContext<Unit, ApplicationCall>.renderCardPage(card: Card) {
+suspend fun ApplicationCall.renderCardPage(card: Card) {
     renderPage(card.id.value.toString()) {
         h1 { +"Card" }
         p { +"${card.id}" }
         button {
             hxPost("/card/${card.id.value}")
-            hxTarget("#entries")
-            hxSwap(AFTER_BEGIN)
+            hxTarget("body")
             +"Add entry"
         }
         ul {
@@ -32,7 +31,7 @@ suspend fun PipelineContext<Unit, ApplicationCall>.renderCardPage(card: Card) {
     }
 }
 
-suspend fun PipelineContext<Unit, ApplicationCall>.renderMissingCardPage() {
+suspend fun ApplicationCall.renderMissingCardPage() {
     renderPage("Card Not Found") {
         h1 { +"Card Not Found" }
     }

@@ -7,11 +7,11 @@ import io.ktor.server.html.*
 import io.ktor.util.pipeline.*
 import kotlinx.html.*
 
-suspend fun PipelineContext<Unit, ApplicationCall>.renderPage(
+suspend fun ApplicationCall.renderPage(
     title: String,
     content: BODY.() -> Unit = {}
 ) {
-    call.respondHtml {
+    respondHtml {
         head {
             title { +title }
             script { src = "$STATIC_PATH/htmx-1.9.8/htmx.min.js" }

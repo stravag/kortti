@@ -18,7 +18,7 @@ class CardService(
         return cardRepository.find(cardId)
     }
 
-    fun addEntryToCard(cardId: CardId): CardEntry {
+    fun addEntryToCard(cardId: CardId): Card {
         val card = requireNotNull(cardRepository.find(cardId))
 
         val charPool: List<Char> = ('a'..'z') + ('A'..'Z')
@@ -38,6 +38,6 @@ class CardService(
 
         cardRepository.save(extendedCard)
 
-        return entry
+        return extendedCard
     }
 }

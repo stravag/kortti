@@ -4,7 +4,7 @@ import io.ktor.server.application.*
 import io.ktor.util.pipeline.*
 import kotlinx.html.*
 
-suspend fun PipelineContext<Unit, ApplicationCall>.renderMainPage() {
+suspend fun ApplicationCall.renderMainPage() {
     renderPage(title = "Kortti") {
         h1 { +"Kortti" }
         h2 { +"Your collaborative card generator" }
