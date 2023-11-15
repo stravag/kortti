@@ -1,6 +1,6 @@
 package ch.ranil.kortti.domain.adventcalendar
 
 interface AdventCalendarRepository {
-    fun save(card: AdventCalendar)
+    fun save(adventCalendar: AdventCalendar)
     fun find(id: AdventCalendarId): AdventCalendar?
 }

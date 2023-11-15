@@ -1,9 +1,12 @@
 package ch.ranil.kortti
 
+import ch.ranil.kortti.domain.adventcalendar.AdventCalendarRepository
+import ch.ranil.kortti.domain.adventcalendar.AdventCalendarService
 import ch.ranil.kortti.domain.card.CardRepository
 import ch.ranil.kortti.domain.card.CardService
+import ch.ranil.kortti.persistence.AdventCalendarRepositoryImpl
 import ch.ranil.kortti.persistence.CardRepositoryImpl
-import ch.ranil.kortti.web.configureController
+import ch.ranil.kortti.web.configureRoutes
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
@@ -20,12 +23,14 @@ fun main() {
         install(Koin) {
             modules(appModule)
         }
-        configureController()
+        configureRoutes()
     }.start(wait = true)
 }
 
 private val appModule: Module
     get() = module {
+        single<AdventCalendarRepository> { AdventCalendarRepositoryImpl() }
+        single { AdventCalendarService(get()) }
         single<CardRepository> { CardRepositoryImpl() }
         single { CardService(get()) }
     }
