@@ -1,6 +1,6 @@
 package ch.ranil.kortti.web
 
-import ch.ranil.kortti.domain.CardService
+import ch.ranil.kortti.domain.card.CardService
 import ch.ranil.kortti.web.pages.renderCardPage
 import ch.ranil.kortti.web.pages.renderMainPage
 import ch.ranil.kortti.web.pages.renderMissingCardPage

@@ -1,7 +1,7 @@
 package ch.ranil.kortti
 
-import ch.ranil.kortti.domain.CardRepository
-import ch.ranil.kortti.domain.CardService
+import ch.ranil.kortti.domain.card.CardRepository
+import ch.ranil.kortti.domain.card.CardService
 import ch.ranil.kortti.persistence.CardRepositoryImpl
 import ch.ranil.kortti.web.configureController
 import io.ktor.server.application.*

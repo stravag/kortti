@@ -1,8 +1,8 @@
 package ch.ranil.kortti.persistence
 
-import ch.ranil.kortti.domain.Card
-import ch.ranil.kortti.domain.CardId
-import ch.ranil.kortti.domain.CardRepository
+import ch.ranil.kortti.domain.card.Card
+import ch.ranil.kortti.domain.card.CardId
+import ch.ranil.kortti.domain.card.CardRepository
 import org.slf4j.LoggerFactory
 
 class CardRepositoryImpl : CardRepository {

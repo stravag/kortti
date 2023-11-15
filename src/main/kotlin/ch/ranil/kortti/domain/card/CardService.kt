@@ -1,4 +1,4 @@
-package ch.ranil.kortti.domain
+package ch.ranil.kortti.domain.card
 
 import java.time.LocalDateTime
 import kotlin.random.Random

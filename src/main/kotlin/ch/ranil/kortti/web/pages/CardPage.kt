@@ -1,8 +1,8 @@
 package ch.ranil.kortti.web.pages
 
-import ch.ranil.kortti.domain.Card
-import ch.ranil.kortti.domain.CardEntry
-import ch.ranil.kortti.domain.CardId
+import ch.ranil.kortti.domain.card.Card
+import ch.ranil.kortti.domain.card.CardEntry
+import ch.ranil.kortti.domain.card.CardId
 import ch.ranil.kortti.web.utils.htmx.hxDelete
 import ch.ranil.kortti.web.utils.htmx.hxPost
 import ch.ranil.kortti.web.utils.htmx.hxTarget

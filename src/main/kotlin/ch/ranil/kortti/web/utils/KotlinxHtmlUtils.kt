@@ -1,7 +1,7 @@
 package ch.ranil.kortti.web.utils
 
-import ch.ranil.kortti.domain.CardEntryId
-import ch.ranil.kortti.domain.CardId
+import ch.ranil.kortti.domain.card.CardEntryId
+import ch.ranil.kortti.domain.card.CardId
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
