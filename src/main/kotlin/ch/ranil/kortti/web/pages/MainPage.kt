@@ -14,6 +14,7 @@ suspend fun ApplicationCall.renderMainPage() {
                 action = "/advent-calendars"
                 method = FormMethod.post
                 button {
+                    classes = setOf("btn btn-primary")
                     +"Create new advent calendar"
                 }
             }
@@ -25,6 +26,7 @@ suspend fun ApplicationCall.renderMainPage() {
                 action = "/cards"
                 method = FormMethod.post
                 button {
+                    classes = setOf("btn btn-primary")
                     +"Create new card"
                 }
             }
