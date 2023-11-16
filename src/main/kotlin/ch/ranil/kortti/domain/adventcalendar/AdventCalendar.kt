@@ -6,7 +6,11 @@ import java.util.*
 
 class AdventCalendar(
     val id: AdventCalendarId,
+    doors: List<Door>
 ) {
+    var doors: List<Door> = doors
+        private set
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -19,6 +23,19 @@ class AdventCalendar(
     override fun hashCode(): Int {
         return id.hashCode()
     }
+
+    sealed interface Door {
+        val closed: Boolean
+    }
+
+    class SimpleDoor(
+        override val closed: Boolean,
+    ) : Door
+
+    class GiphyDoor(
+        override val closed: Boolean,
+        val gifId: String
+    ) : Door
 }
 
 @JvmInline
