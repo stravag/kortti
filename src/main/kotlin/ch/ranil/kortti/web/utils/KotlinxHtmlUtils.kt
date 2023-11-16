@@ -1,5 +1,6 @@
 package ch.ranil.kortti.web.utils
 
+import ch.ranil.kortti.domain.Id
 import ch.ranil.kortti.domain.card.CardEntryId
 import ch.ranil.kortti.domain.card.CardId
 import io.ktor.http.*
@@ -10,6 +11,15 @@ import kotlinx.html.HTMLTag
 import kotlinx.html.TagConsumer
 import kotlinx.html.emptyMap
 import java.lang.reflect.Constructor
+import java.util.*
+import kotlin.reflect.full.primaryConstructor
+
+inline fun <reified T : Id> ApplicationCall.idPathParam(name: String): T {
+    val idString = requireNotNull(this.parameters[name])
+    val id = UUID.fromString(idString)
+    val constructor = requireNotNull(T::class.primaryConstructor)
+    return constructor.call(id)
+}
 
 fun ApplicationCall.cardIdPathParam(name: String): CardId {
     return CardId.parse(requireNotNull(this.parameters[name]))
