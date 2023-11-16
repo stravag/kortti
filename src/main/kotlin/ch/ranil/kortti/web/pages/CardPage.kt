@@ -23,7 +23,7 @@ suspend fun ApplicationCall.renderCardPage(card: Card) {
             card.entries
                 .sortedByDescending { it.dateTime }
                 .forEach { entry ->
-                    renderCardEntryFragment(card.id, entry)
+                    renderCardEntry(card.id, entry)
                 }
         }
     }
@@ -35,7 +35,7 @@ suspend fun ApplicationCall.renderMissingCardPage() {
     }
 }
 
-fun UL.renderCardEntryFragment(cardId: CardId, cardEntry: CardEntry) {
+fun UL.renderCardEntry(cardId: CardId, cardEntry: CardEntry) {
     li {
         p { +"${cardEntry.dateTime}" }
         p { +cardEntry.text }

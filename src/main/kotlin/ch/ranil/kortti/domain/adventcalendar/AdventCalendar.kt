@@ -23,20 +23,20 @@ class AdventCalendar(
     override fun hashCode(): Int {
         return id.hashCode()
     }
-
-    sealed interface Door {
-        val closed: Boolean
-    }
-
-    class SimpleDoor(
-        override val closed: Boolean,
-    ) : Door
-
-    class GiphyDoor(
-        override val closed: Boolean,
-        val gifId: String
-    ) : Door
 }
+
+sealed interface Door {
+    val closed: Boolean
+}
+
+class SimpleDoor(
+    override val closed: Boolean,
+) : Door
+
+class GiphyDoor(
+    override val closed: Boolean,
+    val gifId: String
+) : Door
 
 @JvmInline
 value class AdventCalendarId(override val value: UUID) : Id {
