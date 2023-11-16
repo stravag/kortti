@@ -34,3 +34,8 @@ out/
 
 ### VS Code ###
 .vscode/
+
+####################
+### Custom Stuff ###
+####################
+/jte-classes

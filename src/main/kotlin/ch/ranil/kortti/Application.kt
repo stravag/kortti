@@ -7,8 +7,11 @@ import ch.ranil.kortti.domain.card.CardService
 import ch.ranil.kortti.persistence.AdventCalendarRepositoryImpl
 import ch.ranil.kortti.persistence.CardRepositoryImpl
 import ch.ranil.kortti.web.configureRoutes
+import gg.jte.TemplateEngine
+import gg.jte.resolve.ResourceCodeResolver
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
+import io.ktor.server.jte.*
 import io.ktor.server.netty.*
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -22,6 +25,10 @@ fun main() {
     ) {
         install(Koin) {
             modules(appModule)
+        }
+        install(Jte) {
+            val resolver = ResourceCodeResolver("templates", javaClass.classLoader)
+            templateEngine = TemplateEngine.create(resolver, gg.jte.ContentType.Html)
         }
         configureRoutes()
     }.start(wait = true)

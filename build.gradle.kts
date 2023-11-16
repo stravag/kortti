@@ -27,6 +27,10 @@ dependencies {
     implementation("io.ktor:ktor-server-html-builder-jvm")
     implementation("io.ktor:ktor-server-host-common-jvm")
     implementation("io.ktor:ktor-server-netty-jvm")
+
+    implementation("io.ktor:ktor-server-jte:$ktor_version")
+    implementation("gg.jte:jte-kotlin:3.1.4")
+
     implementation("ch.qos.logback:logback-classic:$logback_version")
 
     implementation("io.insert-koin:koin-ktor:3.5.1")

@@ -1,0 +1,7 @@
+@param id: Int
+@param name: String
+<html lang="en">
+<body>
+<h1>Hello from Resources, ${name}!</h1>
+</body>
+</html>
