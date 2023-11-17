@@ -15,4 +15,11 @@ class AdventCalendarService(
     fun getAdventCalendar(adventCalendarId: AdventCalendarId): AdventCalendar {
         return adventCalendarRepository.getById(adventCalendarId)
     }
+
+    fun openDoor(adventCalendarId: AdventCalendarId, doorNumber: Int): AdventCalendar {
+        val calendar = adventCalendarRepository.getById(adventCalendarId)
+        calendar.open(doorNumber)
+        adventCalendarRepository.save(calendar)
+        return calendar
+    }
 }

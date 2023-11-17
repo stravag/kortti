@@ -11,6 +11,12 @@ class AdventCalendar(
     var doors: List<Door> = doors
         private set
 
+    fun open(doorNumber: Int) {
+        require(doorNumber <= doors.size) { "Unexpected door number: $doorNumber" }
+        val door = doors[doorNumber]
+        door.closed = false
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -26,15 +32,15 @@ class AdventCalendar(
 }
 
 sealed interface Door {
-    val closed: Boolean
+    var closed: Boolean
 }
 
 class SimpleDoor(
-    override val closed: Boolean,
+    override var closed: Boolean,
 ) : Door
 
 class GiphyDoor(
-    override val closed: Boolean,
+    override var closed: Boolean,
     val gifId: String
 ) : Door
 
