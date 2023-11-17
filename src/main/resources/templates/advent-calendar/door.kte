@@ -7,15 +7,15 @@
 @if(door.closed)
     <div hx-put="/advent-calendars/${calendar.id.value.toString()}/${doorNumber}"
          hx-swap="outerHTML"
-         class="card w-96 bg-base-100 shadow-xl">
+         class="card w-96 bg-neutral text-neutral-content">
         <div class="card-body">
             <h2 class="card-title">${doorNumber + 1}</h2>
         </div>
     </div>
 @else
-    <div class="card w-96 bg-base-100 shadow-xl">
+    <div class="card w-96 bg-primary text-primary-content">
         <div class="card-body">
-            <h2 class="card-title">${door.toString()}</h2>
+            <h2 class="card-title">${doorNumber + 1}</h2>
         </div>
     </div>
 @endif
