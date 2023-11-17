@@ -1,10 +1,9 @@
 package ch.ranil.kortti.web
 
 import ch.ranil.kortti.domain.card.Card
+import ch.ranil.kortti.domain.card.CardEntryId
+import ch.ranil.kortti.domain.card.CardId
 import ch.ranil.kortti.domain.card.CardService
-import ch.ranil.kortti.web.utils.cardEntryIdPathParam
-import ch.ranil.kortti.web.utils.cardIdPathParam
-import ch.ranil.kortti.web.utils.respondRedirect303
 import io.ktor.server.application.*
 import io.ktor.server.jte.*
 import io.ktor.server.response.*
@@ -23,17 +22,16 @@ fun Routing.configureCardRoutes() {
         call.respondRedirect303("/cards/${card.id.value}")
     }
     get("/cards/{$CARD_ID}") {
-        val card = cardService.findCard(call.cardIdPathParam(CARD_ID))
+        val card = cardService.findCard(call.idPathParam(CARD_ID))
         call.respond(buildCardPage(card))
     }
     post("/cards/{$CARD_ID}/entries") {
-        val cardId = call.cardIdPathParam(CARD_ID)
-        val card = cardService.addEntryToCard(cardId)
+        val card = cardService.addEntryToCard(call.idPathParam(CARD_ID))
         call.respond(buildCardPage(card))
     }
     delete("/cards/{$CARD_ID}/entries/{$CARD_ENTRY_ID}") {
-        val cardId = call.cardIdPathParam(CARD_ID)
-        val cardEntryId = call.cardEntryIdPathParam(CARD_ENTRY_ID)
+        val cardId = call.idPathParam<CardId>(CARD_ID)
+        val cardEntryId = call.idPathParam<CardEntryId>(CARD_ENTRY_ID)
         val card = cardService.deleteEntryFromCard(cardId, cardEntryId)
         call.respond(buildCardPage(card))
     }

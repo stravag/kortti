@@ -12,7 +12,7 @@ class AdventCalendarService(
         return calendar
     }
 
-    fun findAdventCalendar(adventCalendarId: AdventCalendarId): AdventCalendar? {
-        return adventCalendarRepository.find(adventCalendarId)
+    fun getAdventCalendar(adventCalendarId: AdventCalendarId): AdventCalendar {
+        return adventCalendarRepository.getById(adventCalendarId)
     }
 }

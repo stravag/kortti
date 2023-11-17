@@ -1,5 +1,6 @@
 package ch.ranil.kortti.persistence
 
+import ch.ranil.kortti.domain.EntityNotFoundException
 import ch.ranil.kortti.domain.adventcalendar.AdventCalendar
 import ch.ranil.kortti.domain.adventcalendar.AdventCalendarId
 import ch.ranil.kortti.domain.adventcalendar.AdventCalendarRepository
@@ -13,8 +14,8 @@ class AdventCalendarRepositoryImpl : AdventCalendarRepository {
         LOGGER.info("AdventCalendar saved: $adventCalendar")
     }
 
-    override fun find(id: AdventCalendarId): AdventCalendar? {
-        return calendars[id]
+    override fun getById(id: AdventCalendarId): AdventCalendar {
+        return calendars[id] ?: throw EntityNotFoundException(id)
     }
 
     companion object {

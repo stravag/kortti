@@ -1,0 +1,20 @@
+@import ch.ranil.kortti.domain.adventcalendar.AdventCalendar
+
+@param calendar: AdventCalendar
+
+@template.layout(
+title = "Advent Calendar - ${calendar.id.value}",
+content = @`
+    <h1>Advent Calendar</h1>
+    <p>${calendar.id.value.toString()}</p>
+    <ul>
+        @for((day, door) in calendar.doors
+                             .mapIndexed { index, door -> (index + 1) to door }
+                             .shuffled())
+            <li>
+                <p>${day}</p>
+                <p>${door.toString()}</p>
+            </li>
+        @endfor
+    </ul>
+`)

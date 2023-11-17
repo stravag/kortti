@@ -1,8 +1,8 @@
 @template.layout(
 title = "Kortti",
 content = @`
-    <h1>Kortti</h1>
-    <h2>Create and share fun content</h2>
+    <h1 class="text-5xl">Kortti</h1>
+    <h2 class="text-3xl">Create and share fun content</h2>
     <section>
         <h3>Your place for fun online advent calendars</h3>
         <form action="/advent-calendars" method="post">
