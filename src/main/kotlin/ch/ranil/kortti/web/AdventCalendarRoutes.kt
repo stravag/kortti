@@ -22,6 +22,6 @@ fun Routing.configureAdventCalendarRoutes() {
     get("/advent-calendars/{$ADVENT_CALENDAR_ID}") {
         val id = call.idPathParam<AdventCalendarId>(ADVENT_CALENDAR_ID)
         val calendar = adventCalendarService.getAdventCalendar(id)
-        call.respond(JteContent("adventCalendar.kte", mapOf("calendar" to calendar)))
+        call.respond(JteContent("advent-calendar/adventCalendar.kte", mapOf("calendar" to calendar)))
     }
 }
