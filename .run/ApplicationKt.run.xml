@@ -3,7 +3,6 @@
     <option name="MAIN_CLASS_NAME" value="ch.ranil.kortti.ApplicationKt" />
     <module name="kortti.main" />
     <shortenClasspath name="NONE" />
-    <option name="VM_PARAMETERS" value="-Dio.ktor.development=true" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
