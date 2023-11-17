@@ -1,19 +1,18 @@
 package ch.ranil.kortti.web
 
+import gg.jte.generated.precompiled.Templates
 import io.ktor.server.application.*
 import io.ktor.server.http.content.*
-import io.ktor.server.jte.*
-import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import org.koin.ktor.ext.inject
 
 fun Application.configureRoutes() {
+
+    val templates by inject<Templates>()
+
     routing {
         get("/") {
-            call.respond(JteContent("main.kte", emptyMap()))
-        }
-        get("/sample") {
-            val params = mapOf("id" to 1, "name" to "John")
-            call.respond(JteContent("sample.kte", params))
+            call.respondTemplate { templates.main() }
         }
         staticResources("/static", basePackage = "/static")
 

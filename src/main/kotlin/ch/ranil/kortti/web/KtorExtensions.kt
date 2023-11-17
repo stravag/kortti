@@ -1,6 +1,7 @@
 package ch.ranil.kortti.web
 
 import ch.ranil.kortti.domain.Id
+import gg.jte.models.runtime.JteModel
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
@@ -12,6 +13,10 @@ inline fun <reified T : Id> ApplicationCall.idPathParam(name: String): T {
     val id = UUID.fromString(idString)
     val constructor = requireNotNull(T::class.primaryConstructor)
     return constructor.call(id)
+}
+
+suspend fun ApplicationCall.respondTemplate(template: () -> JteModel) {
+    respondText(template().render(), contentType = ContentType.Text.Html)
 }
 
 suspend fun ApplicationCall.respondRedirect303(url: String) {
