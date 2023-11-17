@@ -1,7 +1,7 @@
 package ch.ranil.kortti.web
 
+import ch.ranil.kortti.domain.card.Card
 import ch.ranil.kortti.domain.card.CardService
-import ch.ranil.kortti.web.pages.renderMissingCardPage
 import ch.ranil.kortti.web.utils.cardEntryIdPathParam
 import ch.ranil.kortti.web.utils.cardIdPathParam
 import ch.ranil.kortti.web.utils.respondRedirect303
@@ -23,20 +23,20 @@ fun Routing.configureCardRoutes() {
         call.respondRedirect303("/cards/${card.id.value}")
     }
     get("/cards/{$CARD_ID}") {
-        when (val card = cardService.findCard(call.cardIdPathParam(CARD_ID))) {
-            null -> call.renderMissingCardPage()
-            else -> call.respond(JteContent("card.kte", mapOf("card" to card)))
-        }
+        val card = cardService.findCard(call.cardIdPathParam(CARD_ID))
+        call.respond(buildCardPage(card))
     }
     post("/cards/{$CARD_ID}/entries") {
         val cardId = call.cardIdPathParam(CARD_ID)
         val card = cardService.addEntryToCard(cardId)
-        call.respond(JteContent("card.kte", mapOf("card" to card)))
+        call.respond(buildCardPage(card))
     }
     delete("/cards/{$CARD_ID}/entries/{$CARD_ENTRY_ID}") {
         val cardId = call.cardIdPathParam(CARD_ID)
         val cardEntryId = call.cardEntryIdPathParam(CARD_ENTRY_ID)
         val card = cardService.deleteEntryFromCard(cardId, cardEntryId)
-        call.respond(JteContent("card.kte", mapOf("card" to card)))
+        call.respond(buildCardPage(card))
     }
 }
+
+private fun buildCardPage(card: Card) = JteContent("card.kte", mapOf("card" to card))

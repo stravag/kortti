@@ -1,5 +1,6 @@
 package ch.ranil.kortti.persistence
 
+import ch.ranil.kortti.domain.EntityNotFoundException
 import ch.ranil.kortti.domain.card.Card
 import ch.ranil.kortti.domain.card.CardId
 import ch.ranil.kortti.domain.card.CardRepository
@@ -13,8 +14,8 @@ class CardRepositoryImpl : CardRepository {
         LOGGER.info("Card saved: $card")
     }
 
-    override fun find(id: CardId): Card? {
-        return cards[id]
+    override fun getById(id: CardId): Card {
+        return cards[id] ?: throw EntityNotFoundException(id)
     }
 
     companion object {

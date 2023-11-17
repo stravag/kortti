@@ -1,5 +1,6 @@
 package ch.ranil.kortti
 
+import ch.ranil.kortti.domain.EntityNotFoundException
 import ch.ranil.kortti.domain.adventcalendar.AdventCalendarRepository
 import ch.ranil.kortti.domain.adventcalendar.AdventCalendarService
 import ch.ranil.kortti.domain.card.CardRepository
@@ -13,6 +14,8 @@ import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.jte.*
 import io.ktor.server.netty.*
+import io.ktor.server.plugins.statuspages.*
+import io.ktor.server.response.*
 import org.koin.core.module.Module
 import org.koin.dsl.module
 import org.koin.ktor.plugin.Koin
@@ -29,6 +32,11 @@ fun main() {
         install(Jte) {
             val resolver = ResourceCodeResolver("templates", javaClass.classLoader)
             templateEngine = TemplateEngine.create(resolver, gg.jte.ContentType.Html)
+        }
+        install(StatusPages) {
+            exception<EntityNotFoundException> { call, _ ->
+                call.respond(JteContent("error/404.kte", emptyMap()))
+            }
         }
         configureRoutes()
     }.start(wait = true)

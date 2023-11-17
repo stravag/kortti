@@ -11,19 +11,19 @@ class CardService(
         return card
     }
 
-    fun findCard(cardId: CardId): Card? {
-        return cardRepository.find(cardId)
+    fun findCard(cardId: CardId): Card {
+        return cardRepository.getById(cardId)
     }
 
     fun addEntryToCard(cardId: CardId): Card {
-        val card = requireNotNull(cardRepository.find(cardId))
+        val card = cardRepository.getById(cardId)
         card.addEntry()
         cardRepository.save(card)
         return card
     }
 
     fun deleteEntryFromCard(cardId: CardId, cardEntryId: CardEntryId): Card {
-        val card = requireNotNull(cardRepository.find(cardId))
+        val card = cardRepository.getById(cardId)
         card.deleteEntry(cardEntryId)
         cardRepository.save(card)
         return card
