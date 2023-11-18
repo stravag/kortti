@@ -4,10 +4,7 @@ class AdventCalendarService(
     private val adventCalendarRepository: AdventCalendarRepository,
 ) {
     fun createAdventCalendar(): AdventCalendar {
-        val calendar = AdventCalendar(
-            id = AdventCalendarId.random(),
-            doors = List(24) { SimpleDoor(closed = true) }
-        )
+        val calendar = AdventCalendar()
         adventCalendarRepository.save(calendar)
         return calendar
     }
