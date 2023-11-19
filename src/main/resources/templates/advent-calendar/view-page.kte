@@ -11,7 +11,7 @@ content = @`
         @for(doorNumber in calendar.doors
                              .indices
                              .shuffled())
-            @template.advent-calendar.door(doorNumber = doorNumber, calendar = calendar)
+            @template.advent-calendar.door-fragment(doorNumber = doorNumber, calendar = calendar)
         @endfor
     </div>
 `)

@@ -13,6 +13,13 @@ class AdventCalendarService(
         return adventCalendarRepository.getById(adventCalendarId)
     }
 
+    fun changeDoorType(adventCalendarId: AdventCalendarId, doorNumber: Int, doorType: DoorType): AdventCalendar {
+        val calendar = adventCalendarRepository.getById(adventCalendarId)
+        calendar.changeDoorType(doorNumber, doorType)
+        adventCalendarRepository.save(calendar)
+        return calendar
+    }
+
     fun openDoor(adventCalendarId: AdventCalendarId, doorNumber: Int): AdventCalendar {
         val calendar = adventCalendarRepository.getById(adventCalendarId)
         calendar.open(doorNumber)
