@@ -43,8 +43,8 @@ fun Routing.configureAdventCalendarRoutes() {
 
     put("/advent-calendars/{$ADVENT_CALENDAR_ID}/{$DOOR_NUMBER}/edit") {
         val id = call.idPathParam<AdventCalendarId>(ADVENT_CALENDAR_ID)
-        val type = DoorType.valueOf(requireNotNull(call.receiveParameters()["type"]))
         val doorNumber = requireNotNull(call.parameters[DOOR_NUMBER]).toInt()
+        val type = DoorType.valueOf(requireNotNull(call.receiveParameters()["type"]))
         val calendar = adventCalendarService.changeDoorType(id, doorNumber, type)
         call.respondTemplate { templates.adventCalendarEditPage(calendar) }
     }

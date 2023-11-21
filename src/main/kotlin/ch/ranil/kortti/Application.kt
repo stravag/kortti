@@ -7,6 +7,7 @@ import ch.ranil.kortti.domain.card.CardRepository
 import ch.ranil.kortti.domain.card.CardService
 import ch.ranil.kortti.persistence.AdventCalendarRepositoryImpl
 import ch.ranil.kortti.persistence.CardRepositoryImpl
+import ch.ranil.kortti.web.GiphyClient
 import ch.ranil.kortti.web.configureRoutes
 import gg.jte.ContentType
 import gg.jte.TemplateEngine
@@ -62,6 +63,7 @@ private fun Application.configureDependencyInjection() {
                 val templateEngine = TemplateEngine.create(resolver, ContentType.Html)
                 DynamicTemplates(templateEngine)
             }
+            single { GiphyClient() }
         })
     }
 }

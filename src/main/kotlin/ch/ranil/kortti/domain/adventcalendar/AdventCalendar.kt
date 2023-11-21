@@ -72,7 +72,7 @@ class SimpleDoor(
 class GiphyDoor(
     override val type: DoorType = DoorType.GIPHY,
     override var closed: Boolean = true,
-    val gifId: String? = null,
+    val gifUrl: String? = null,
 ) : Door
 
 enum class DoorType(val builder: () -> Door) {

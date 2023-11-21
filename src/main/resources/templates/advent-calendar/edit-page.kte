@@ -15,8 +15,8 @@ content = @`
                              .mapIndexed { i, door -> i to door })
             <div class="card card-side w-96 bg-base-100 shadow-xl py-4 my-4">
                 <p class="text-5xl text-center w-16">${doorNumber + 1}</p>
-                <div>
-                    <select name="type" class="select select-bordered w-full max-w-xs"
+                <div class="flex flex-col space-y-4">
+                    <select name="type" class="select select-bordered"
                             hx-put="/advent-calendars/${calendar.id.value.toString()}/${doorNumber}/edit"
                             hx-target="body">
                         @for(type in DoorType.entries)
@@ -26,12 +26,19 @@ content = @`
                         @endfor
                     </select>
                     @if(door is SimpleDoor)
-                    <p>Simple</p>
                     @elseif(door is GiphyDoor)
-                    <p>Giphy</p>
-                    <input type="text" id="gif-search-${doorNumber}" placeholder="Search for GIFs">
-                    <button onclick="searchGifs(${doorNumber})">Search</button>
-                    <div id="gif-container-${doorNumber}"></div>
+                        @if(door.gifUrl == null)
+                            <input type="search"
+                                   name="search"
+                                   hx-post="/giphy-search"
+                                   hx-trigger="input changed delay:500ms, search"
+                                   hx-target="#gif-container-${doorNumber}"
+                                   class="input input-bordered"
+                                   placeholder="Search for GIFs">
+                            <div id="gif-container-${doorNumber}"></div>
+                        @else
+                            <img src="${door.gifUrl}" alt="Giphy">
+                        @endif
                     @endif
                 </div>
             </div>
