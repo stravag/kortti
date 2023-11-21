@@ -26,9 +26,12 @@ content = @`
                         @endfor
                     </select>
                     @if(door is SimpleDoor)
-                        <p>Simple</p>
+                    <p>Simple</p>
                     @elseif(door is GiphyDoor)
-                        <p>Giphy</p>
+                    <p>Giphy</p>
+                    <input type="text" id="gif-search-${doorNumber}" placeholder="Search for GIFs">
+                    <button onclick="searchGifs(${doorNumber})">Search</button>
+                    <div id="gif-container-${doorNumber}"></div>
                     @endif
                 </div>
             </div>

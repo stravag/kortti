@@ -13,6 +13,34 @@
     <link rel="manifest" href="/static/site.webmanifest">
     <script src="/static/htmx-1.9.8/htmx.min.js"></script>
     <script src="/static/tailwindcss-3.3.5/tailwindcss.js"></script>
+    @raw
+    <script>
+        function searchGifs(index) {
+            const apiKey = 'OPmZcdJVfrYPB3LsaMeGZ2ZmXdMzB3Qk';
+            const searchQuery = document.getElementById(`gif-search-${index}`).value;
+            const endpoint = 'https://api.giphy.com/v1/gifs/search';
+            const url = `${endpoint}?api_key=${apiKey}&q=${searchQuery}&limit=10`;
+
+            console.log(url)
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => displayGifs(index, data.data))
+                .catch(error => console.error('Error fetching GIFs:', error));
+        }
+
+        function displayGifs(index, gifs) {
+            const container = document.getElementById(`gif-container-${index}`);
+            container.innerHTML = '';
+
+            gifs.forEach(gif => {
+                const img = document.createElement('img');
+                img.src = gif.images.fixed_height.url;
+                container.appendChild(img);
+            });
+        }
+    </script>
+    @endraw
 </head>
 <body hx-boost="true">
 <div class="container mx-auto py-16">
