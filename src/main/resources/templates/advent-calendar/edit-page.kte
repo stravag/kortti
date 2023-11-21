@@ -1,25 +1,36 @@
 @import ch.ranil.kortti.domain.adventcalendar.AdventCalendar
 @import ch.ranil.kortti.domain.adventcalendar.DoorType
+@import ch.ranil.kortti.domain.adventcalendar.GiphyDoor
+@import ch.ranil.kortti.domain.adventcalendar.SimpleDoor
 
 @param calendar: AdventCalendar
 
 @template.layout(
 title = "Advent Calendar - ${calendar.id.value}",
 content = @`
-    <h1>Advent Calendar</h1>
+    <h1 class="text-4xl">Advent Calendar</h1>
     <p>${calendar.id.value.toString()}</p>
     <div>
         @for((doorNumber, door) in calendar.doors
                              .mapIndexed { i, door -> i to door })
-            <div>
-                <p>${doorNumber + 1}</p>
-                <select name="type"
-                        hx-put="/advent-calendars/${calendar.id.value.toString()}/${doorNumber}/edit"
-                        hx-target="body">
-                    @for(type in DoorType.entries)
-                        <option value="${type}" hx-trigger="">${type}</option>
-                    @endfor
-                </select>
+            <div class="card card-side w-96 bg-base-100 shadow-xl py-4 my-4">
+                <p class="text-5xl text-center w-16">${doorNumber + 1}</p>
+                <div>
+                    <select name="type" class="select select-bordered w-full max-w-xs"
+                            hx-put="/advent-calendars/${calendar.id.value.toString()}/${doorNumber}/edit"
+                            hx-target="body">
+                        @for(type in DoorType.entries)
+                            <option value="${type}" selected="${door.type == type}">
+                                ${type}
+                            </option>
+                        @endfor
+                    </select>
+                    @if(door is SimpleDoor)
+                        <p>Simple</p>
+                    @elseif(door is GiphyDoor)
+                        <p>Giphy</p>
+                    @endif
+                </div>
             </div>
         @endfor
     </div>

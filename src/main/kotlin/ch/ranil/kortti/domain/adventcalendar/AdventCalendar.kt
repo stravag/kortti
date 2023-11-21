@@ -60,14 +60,17 @@ class AdventCalendar(
 }
 
 sealed interface Door {
+    val type: DoorType
     var closed: Boolean
 }
 
 class SimpleDoor(
+    override val type: DoorType = DoorType.SIMPLE,
     override var closed: Boolean = true,
 ) : Door
 
 class GiphyDoor(
+    override val type: DoorType = DoorType.GIPHY,
     override var closed: Boolean = true,
     val gifId: String? = null,
 ) : Door
