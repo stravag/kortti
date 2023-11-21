@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import kotlin.io.path.Path
 
 val kotlin_version: String by project
@@ -42,6 +43,10 @@ dependencies {
 
     testImplementation("io.ktor:ktor-server-tests-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+}
+
+kotlin {
+    jvmToolchain(17)
 }
 
 jte {
