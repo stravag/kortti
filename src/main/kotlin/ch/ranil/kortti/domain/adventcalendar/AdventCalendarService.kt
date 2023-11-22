@@ -20,6 +20,13 @@ class AdventCalendarService(
         return calendar
     }
 
+    fun editGifUrl(adventCalendarId: AdventCalendarId, doorNumber: Int, gifUrl: String?): AdventCalendar {
+        val calendar = adventCalendarRepository.getById(adventCalendarId)
+        calendar.editGifUrl(doorNumber, gifUrl)
+        adventCalendarRepository.save(calendar)
+        return calendar
+    }
+
     fun openDoor(adventCalendarId: AdventCalendarId, doorNumber: Int): AdventCalendar {
         val calendar = adventCalendarRepository.getById(adventCalendarId)
         calendar.open(doorNumber)

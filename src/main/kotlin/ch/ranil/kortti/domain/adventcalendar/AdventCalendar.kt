@@ -24,6 +24,14 @@ class AdventCalendar(
         }
     }
 
+    fun editGifUrl(doorNumber: Int, gifUrl: String?) {
+        if (!published && isValidDoorNumber(doorNumber)) {
+            mutableDoors[doorNumber] = GiphyDoor(gifUrl = gifUrl)
+        } else {
+            LOGGER.warn("Cannot edit gif url in door #$doorNumber in $this")
+        }
+    }
+
     fun publish() {
         published = true
     }

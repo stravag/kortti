@@ -41,11 +41,19 @@ fun Routing.configureAdventCalendarRoutes() {
         call.respondTemplate { templates.adventCalendarDoorFragment(doorNumber, calendar) }
     }
 
-    put("/advent-calendars/{$ADVENT_CALENDAR_ID}/{$DOOR_NUMBER}/edit") {
+    put("/advent-calendars/{$ADVENT_CALENDAR_ID}/{$DOOR_NUMBER}/edit-type") {
         val id = call.idPathParam<AdventCalendarId>(ADVENT_CALENDAR_ID)
         val doorNumber = requireNotNull(call.parameters[DOOR_NUMBER]).toInt()
         val type = DoorType.valueOf(requireNotNull(call.receiveParameters()["type"]))
         val calendar = adventCalendarService.changeDoorType(id, doorNumber, type)
+        call.respondTemplate { templates.adventCalendarEditPage(calendar) }
+    }
+
+    put("/advent-calendars/{$ADVENT_CALENDAR_ID}/{$DOOR_NUMBER}/edit-gif-url") {
+        val id = call.idPathParam<AdventCalendarId>(ADVENT_CALENDAR_ID)
+        val doorNumber = requireNotNull(call.parameters[DOOR_NUMBER]).toInt()
+        val gifUrl = call.receiveParameters()["gifUrl"]
+        val calendar = adventCalendarService.editGifUrl(id, doorNumber, gifUrl)
         call.respondTemplate { templates.adventCalendarEditPage(calendar) }
     }
 }

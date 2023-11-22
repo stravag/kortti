@@ -17,7 +17,7 @@ content = @`
                 <p class="text-5xl text-center w-16">${doorNumber + 1}</p>
                 <div class="flex flex-col space-y-4">
                     <select name="type" class="select select-bordered"
-                            hx-put="/advent-calendars/${calendar.id.value.toString()}/${doorNumber}/edit"
+                            hx-put="/advent-calendars/${calendar.id.value.toString()}/${doorNumber}/edit-type"
                             hx-target="body">
                         @for(type in DoorType.entries)
                             <option value="${type}" selected="${door.type == type}">
@@ -27,17 +27,23 @@ content = @`
                     </select>
                     @if(door is SimpleDoor)
                     @elseif(door is GiphyDoor)
+                        !{var editGifUrl = "/advent-calendars/${calendar.id.value}/${doorNumber}/edit-gif-url"}
                         @if(door.gifUrl == null)
-                            <input type="search"
-                                   name="search"
-                                   hx-post="/giphy-search"
-                                   hx-trigger="input changed delay:500ms, search"
-                                   hx-target="#gif-container-${doorNumber}"
-                                   class="input input-bordered"
-                                   placeholder="Search for GIFs">
+                            <div>
+                                <input type="search"
+                                       name="search"
+                                       hx-post="/giphy-search"
+                                       hx-include="next input"
+                                       hx-trigger="input changed delay:500ms, search"
+                                       hx-target="#gif-container-${doorNumber}"
+                                       class="input input-bordered"
+                                       placeholder="Search for GIFs">
+                                <input type="hidden" name="triggerUrl"
+                                       value="${editGifUrl}">
+                            </div>
                             <div id="gif-container-${doorNumber}"></div>
                         @else
-                            <img src="${door.gifUrl}" alt="Giphy">
+                            <img hx-put="${editGifUrl}" hx-target="body" src="${door.gifUrl}" alt="Giphy">
                         @endif
                     @endif
                 </div>

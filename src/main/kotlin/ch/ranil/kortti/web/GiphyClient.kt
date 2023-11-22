@@ -27,7 +27,7 @@ class GiphyClient {
                 val image = gifObject.images["fixed_height_small"]
                 image?.let {
                     GiphyGifs(
-                        url = gifObject.url,
+                        url = gifObject.images["original"]?.url ?: gifObject.embed_url,
                         title = gifObject.title,
                         previewUrl = image.url
                     )
@@ -58,7 +58,7 @@ data class GiphyResponse(
 @Serializable
 data class GifObject(
     val id: String,
-    val url: String,
+    val embed_url: String,
     val title: String,
     val images: Map<String, ImageObject>
 )

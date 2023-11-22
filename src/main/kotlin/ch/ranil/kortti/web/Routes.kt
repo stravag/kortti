@@ -18,10 +18,12 @@ fun Application.configureRoutes() {
             call.respondTemplate { templates.main() }
         }
         post("/giphy-search") {
-            val query = call.receiveParameters().getOrFail("search")
+            val parameters = call.receiveParameters()
+            val query = parameters.getOrFail("search")
+            val triggerUrl = parameters.getOrFail("triggerUrl")
             if (query.isNotEmpty()) {
                 val giphyGifs = giphyClient.getGifs(query)
-                call.respondTemplate { templates.giphyResult(giphyGifs) }
+                call.respondTemplate { templates.giphyResult(giphyGifs, triggerUrl) }
             } else {
                 call.respondTemplate { templates.blank() }
             }
