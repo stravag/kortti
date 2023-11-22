@@ -50,5 +50,5 @@ content = @`
             </div>
         @endfor
     </div>
-    <button hx-post="/advent-calendars/${calendar.id.value.toString()}/publish">Publish</button>
+    <button hx-post="/advent-calendars/${calendar.id.value.toString()}/publish" hx-target="body">Publish</button>
 `)

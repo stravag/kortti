@@ -34,6 +34,12 @@ fun Routing.configureAdventCalendarRoutes() {
         }
     }
 
+    post("/advent-calendars/{$ADVENT_CALENDAR_ID}/publish") {
+        val id = call.idPathParam<AdventCalendarId>(ADVENT_CALENDAR_ID)
+        adventCalendarService.publish(id)
+        call.respondRedirect303("/advent-calendars/${id.value}")
+    }
+
     put("/advent-calendars/{$ADVENT_CALENDAR_ID}/{$DOOR_NUMBER}") {
         val id = call.idPathParam<AdventCalendarId>(ADVENT_CALENDAR_ID)
         val doorNumber = requireNotNull(call.parameters[DOOR_NUMBER]).toInt()

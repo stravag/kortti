@@ -33,4 +33,11 @@ class AdventCalendarService(
         adventCalendarRepository.save(calendar)
         return calendar
     }
+
+    fun publish(id: AdventCalendarId): AdventCalendar {
+        val calendar = adventCalendarRepository.getById(id)
+        calendar.publish()
+        adventCalendarRepository.save(calendar)
+        return calendar
+    }
 }
