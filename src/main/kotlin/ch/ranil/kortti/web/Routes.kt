@@ -19,8 +19,12 @@ fun Application.configureRoutes() {
         }
         post("/giphy-search") {
             val query = call.receiveParameters().getOrFail("search")
-            val giphyGifs = giphyClient.getGifs(query)
-            call.respondTemplate { templates.giphyResult(giphyGifs) }
+            if (query.isNotEmpty()) {
+                val giphyGifs = giphyClient.getGifs(query)
+                call.respondTemplate { templates.giphyResult(giphyGifs) }
+            } else {
+                call.respondTemplate { templates.blank() }
+            }
         }
         staticResources("/static", basePackage = "/static")
 
