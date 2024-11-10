@@ -1,13 +1,16 @@
 import kotlin.io.path.Path
 
 val kotlin_version: String by project
+val ktor_version: String by project
+val koin_version: String by project
+val jte_version: String by project
 val logback_version: String by project
 
 plugins {
-    kotlin("jvm") version "1.9.20"
-    kotlin("plugin.serialization") version "1.9.20"
-    id("io.ktor.plugin") version "2.3.6"
-    id("gg.jte.gradle") version "3.1.4"
+    kotlin("jvm")
+    kotlin("plugin.serialization")
+    id("io.ktor.plugin")
+    id("gg.jte.gradle")
 }
 
 group = "ch.ranil"
@@ -32,20 +35,20 @@ dependencies {
     implementation("io.ktor:ktor-server-status-pages")
     implementation("io.ktor:ktor-server-jte")
 
-    implementation("gg.jte:jte:3.1.4")
-    implementation("gg.jte:jte-runtime:3.1.4")
-    implementation("gg.jte:jte-kotlin:3.1.4")
-    jteGenerate("gg.jte:jte-models:3.1.4")
+    implementation("gg.jte:jte:$jte_version")
+    implementation("gg.jte:jte-runtime:$jte_version")
+    implementation("gg.jte:jte-kotlin:$jte_version")
+    jteGenerate("gg.jte:jte-models:$jte_version")
 
-    implementation("io.ktor:ktor-client-java")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.1")
+    implementation("io.ktor:ktor-client-java:$ktor_version")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
 
     implementation("ch.qos.logback:logback-classic:$logback_version")
 
-    implementation("io.insert-koin:koin-ktor:3.5.1")
+    implementation("io.insert-koin:koin-ktor:$koin_version")
 
-    testImplementation("io.ktor:ktor-server-tests-jvm")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+    testImplementation("io.ktor:ktor-server-test-host:$ktor_version")
+    testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlin_version")
 }
 
 kotlin {
