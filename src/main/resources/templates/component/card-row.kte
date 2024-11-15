@@ -1,0 +1,12 @@
+@import ch.ranil.kortti.domain.card.Card
+
+@param card: Card
+
+<tr>
+    <td>
+        <a href="/cards/${card.id.value.toString()}">
+            ${card.name}
+        </a>
+    </td>
+    <td>${card.entries.count()}</td>
+</tr>

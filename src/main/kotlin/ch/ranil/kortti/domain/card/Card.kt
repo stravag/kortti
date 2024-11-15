@@ -8,6 +8,7 @@ import kotlin.random.Random
 
 class Card(
     val id: CardId,
+    val name: String,
     entries: List<CardEntry> = emptyList()
 ) {
     var entries: List<CardEntry> = entries

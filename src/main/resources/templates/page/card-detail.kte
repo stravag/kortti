@@ -2,7 +2,7 @@
 
 @param card: Card
 
-@template.layout(
+@template.layouts.layout(
 title = "Card - ${card.id.value}",
 content = @`
     <h1>Card</h1>

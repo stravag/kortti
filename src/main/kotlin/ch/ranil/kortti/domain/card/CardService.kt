@@ -1,17 +1,24 @@
 package ch.ranil.kortti.domain.card
 
+import ch.ranil.kortti.web.CardFormData
+
 class CardService(
     private val cardRepository: CardRepository,
 ) {
-    fun createCard(): Card {
+    fun createCard(data: CardFormData): Card {
         val card = Card(
-            id = CardId.random()
+            id = CardId.random(),
+            name = data.name.ifBlank { "MISSING" },
         )
         cardRepository.save(card)
         return card
     }
 
-    fun findCard(cardId: CardId): Card {
+    fun getCards(): List<Card> {
+        return cardRepository.getAll()
+    }
+
+    fun getCard(cardId: CardId): Card {
         return cardRepository.getById(cardId)
     }
 

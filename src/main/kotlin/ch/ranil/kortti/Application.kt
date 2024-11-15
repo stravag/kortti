@@ -1,11 +1,8 @@
 package ch.ranil.kortti
 
 import ch.ranil.kortti.domain.EntityNotFoundException
-import ch.ranil.kortti.domain.adventcalendar.AdventCalendarRepository
-import ch.ranil.kortti.domain.adventcalendar.AdventCalendarService
 import ch.ranil.kortti.domain.card.CardRepository
 import ch.ranil.kortti.domain.card.CardService
-import ch.ranil.kortti.persistence.AdventCalendarRepositoryImpl
 import ch.ranil.kortti.persistence.CardRepositoryImpl
 import ch.ranil.kortti.web.GiphyClient
 import ch.ranil.kortti.web.configureRoutes
@@ -14,10 +11,12 @@ import gg.jte.TemplateEngine
 import gg.jte.generated.precompiled.DynamicTemplates
 import gg.jte.generated.precompiled.Templates
 import gg.jte.resolve.DirectoryCodeResolver
+import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.jte.*
 import io.ktor.server.netty.*
+import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.plugins.statuspages.*
 import io.ktor.server.response.*
 import org.koin.dsl.module
@@ -31,6 +30,7 @@ fun main() {
         configureDependencyInjection()
         configureTemplating()
         configureErrorHandling()
+        configureContentNegotiation()
         configureRoutes()
     }.start(wait = true)
 }
@@ -54,8 +54,6 @@ private fun Application.configureTemplating() {
 private fun Application.configureDependencyInjection() {
     install(Koin) {
         modules(module {
-            single<AdventCalendarRepository> { AdventCalendarRepositoryImpl() }
-            single { AdventCalendarService(get()) }
             single<CardRepository> { CardRepositoryImpl() }
             single { CardService(get()) }
             single<Templates> {
@@ -68,3 +66,8 @@ private fun Application.configureDependencyInjection() {
     }
 }
 
+private fun Application.configureContentNegotiation() {
+    install(ContentNegotiation) {
+        json()
+    }
+}

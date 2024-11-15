@@ -1,0 +1,29 @@
+@import gg.jte.Content
+
+@param title: String
+@param content: Content
+
+<html lang="en">
+<head>
+    <title>${title}</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
+    <link rel="manifest" href="/static/site.webmanifest">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <script src="https://unpkg.com/htmx.org@2.0.3"
+            integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq"
+            crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/htmx-ext-json-enc@2.0.1/json-enc.js"></script>
+    <script src="/static/modal.js"></script>
+</head>
+<body hx-boost="true">
+<div>
+    ${content}
+    <dialog id="modal">
+        <article id="modal-content"></article>
+    </dialog>
+</div>
+</body>
+</html>

@@ -14,6 +14,10 @@ class CardRepositoryImpl : CardRepository {
         LOGGER.info("Card saved: $card")
     }
 
+    override fun getAll(): List<Card> {
+        return cards.values.toList()
+    }
+
     override fun getById(id: CardId): Card {
         return cards[id] ?: throw EntityNotFoundException(id)
     }
