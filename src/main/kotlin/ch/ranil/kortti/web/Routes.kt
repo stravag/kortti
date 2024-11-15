@@ -26,7 +26,7 @@ fun Application.configureRoutes() {
 
         get("/") {
             val cards = cardService.getCards()
-            call.respondTemplate { templates.pageMain(cards) }
+            call.respondTemplate { templates.pageCardOverview(cards) }
         }
 
         post("/giphy-search") {
