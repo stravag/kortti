@@ -3,7 +3,7 @@ plugins {
     kotlin("plugin.spring") version "2.0.21"
     id("org.springframework.boot") version "3.4.4"
     id("io.spring.dependency-management") version "1.1.7"
-    id("gg.jte.gradle") version "3.1.16"
+    id("gg.jte.gradle") version "3.2.0"
 }
 
 group = "ch.ranil"
@@ -22,10 +22,15 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("gg.jte:jte-kotlin:3.1.16")
-    implementation("gg.jte:jte-spring-boot-starter-3:3.1.16")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+    implementation("gg.jte:jte:3.2.0")
+    implementation("gg.jte:jte-runtime:3.2.0")
+    implementation("gg.jte:jte-kotlin:3.2.0")
+    jteGenerate("gg.jte:jte-models:3.2.0")
+
     developmentOnly("org.springframework.boot:spring-boot-devtools")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
@@ -38,8 +43,8 @@ kotlin {
 }
 
 jte {
-    //precompile()
-    //generate()
+    precompile()
+    generate()
     contentType = gg.jte.ContentType.Html
     packageName = "ch.ranil.kortti.templates"
 }
