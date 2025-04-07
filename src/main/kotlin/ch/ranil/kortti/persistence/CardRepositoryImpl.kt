@@ -5,7 +5,9 @@ import ch.ranil.kortti.domain.card.Card
 import ch.ranil.kortti.domain.card.CardId
 import ch.ranil.kortti.domain.card.CardRepository
 import org.slf4j.LoggerFactory
+import org.springframework.stereotype.Repository
 
+@Repository
 class CardRepositoryImpl : CardRepository {
     private val cards = mutableMapOf<CardId, Card>()
 

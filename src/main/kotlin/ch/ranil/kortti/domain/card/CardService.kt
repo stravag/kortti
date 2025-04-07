@@ -1,7 +1,9 @@
 package ch.ranil.kortti.domain.card
 
 import ch.ranil.kortti.web.CardFormData
+import org.springframework.stereotype.Service
 
+@Service
 class CardService(
     private val cardRepository: CardRepository,
 ) {

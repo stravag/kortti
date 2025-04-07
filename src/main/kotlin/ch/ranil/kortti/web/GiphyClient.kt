@@ -1,12 +1,6 @@
 package ch.ranil.kortti.web
 
-import io.ktor.client.*
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
-import org.slf4j.LoggerFactory
-
+/*
 class GiphyClient {
     private val client = HttpClient()
     private val json = Json {
@@ -66,4 +60,11 @@ data class GifObject(
 @Serializable
 data class ImageObject(
     val url: String
+)
+*/
+
+data class GiphyGifs(
+    val url: String,
+    val title: String,
+    val previewUrl: String
 )

@@ -1,20 +1,9 @@
 package ch.ranil.kortti.web
 
-import ch.ranil.kortti.domain.card.CardEntryId
-import ch.ranil.kortti.domain.card.CardId
-import ch.ranil.kortti.domain.card.CardService
-import gg.jte.generated.precompiled.Templates
-import io.ktor.server.application.*
-import io.ktor.server.http.content.*
-import io.ktor.server.request.*
-import io.ktor.server.routing.*
-import io.ktor.server.util.*
-import kotlinx.serialization.Serializable
-import org.koin.ktor.ext.inject
-
 private const val CARD_ID = "cardId"
 private const val CARD_ENTRY_ID = "cardEntryId"
 
+/*
 fun Application.configureRoutes() {
 
     val giphyClient by inject<GiphyClient>()
@@ -74,3 +63,4 @@ fun Application.configureRoutes() {
 data class CardFormData(
     val name: String
 )
+ */

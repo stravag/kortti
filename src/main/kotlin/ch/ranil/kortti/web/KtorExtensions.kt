@@ -1,13 +1,6 @@
 package ch.ranil.kortti.web
 
-import ch.ranil.kortti.domain.Id
-import gg.jte.models.runtime.JteModel
-import io.ktor.http.*
-import io.ktor.server.application.*
-import io.ktor.server.response.*
-import java.util.*
-import kotlin.reflect.full.primaryConstructor
-
+/*
 inline fun <reified T : Id> ApplicationCall.idPathParam(name: String): T {
     val idString = requireNotNull(this.parameters[name])
     val id = UUID.fromString(idString)
@@ -23,3 +16,4 @@ suspend fun ApplicationCall.respondRedirect303(url: String) {
     response.headers.append(HttpHeaders.Location, url)
     respond(HttpStatusCode.SeeOther)
 }
+*/
