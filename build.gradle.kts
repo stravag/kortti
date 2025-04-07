@@ -47,6 +47,9 @@ jte {
     generate()
     contentType = gg.jte.ContentType.Html
     packageName = "ch.ranil.kortti.templates"
+    jteExtension("gg.jte.models.generator.ModelExtension") {
+        property("language", "Kotlin")
+    }
 }
 
 tasks.withType<Test> {
