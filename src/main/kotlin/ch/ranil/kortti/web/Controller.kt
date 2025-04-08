@@ -25,11 +25,6 @@ class Controller(
         return templates.pageCardDetail(card).render()
     }
 
-    @GetMapping("/card-form")
-    fun cardForm(): String {
-        return templates.componentCardForm(null).render()
-    }
-
     @PostMapping("/cards")
     fun createCard(@RequestBody data: CardFormData): String {
         val card = cardService.createCard(data)

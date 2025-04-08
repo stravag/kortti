@@ -18,12 +18,9 @@
     <script src="https://unpkg.com/htmx-ext-json-enc@2.0.1/json-enc.js"></script>
     <script src="/modal.js"></script>
 </head>
-<body hx-boost="true">
+<body>
 <div>
     ${content}
-    <dialog id="modal">
-        <article id="modal-content"></article>
-    </dialog>
 </div>
 </body>
 </html>

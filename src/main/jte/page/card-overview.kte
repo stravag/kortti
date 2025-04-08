@@ -7,11 +7,9 @@ title = "Kortti",
 content = @`
     <h1>Kortti</h1>
     <section>
-        <button hx-get="/card-form"
-                hx-target="#modal-content"
-                data-target="modal"
-                onclick="toggleModal(event)"
-        >Create new card
+        <button data-target="modal"
+                onclick="toggleModal(event)">
+            Create new card
         </button>
     </section>
     <section>
@@ -30,4 +28,9 @@ content = @`
             </tbody>
         </table>
     </section>
+    <dialog id="modal">
+        <article id="modal-content">
+            @template.component.card-form(card = null)
+        </article>
+    </dialog>
 `)
