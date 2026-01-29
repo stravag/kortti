@@ -8,7 +8,10 @@ title = "Kortti",
 content = @`
     <h1>Kortti</h1>
     <section>
-        <form hx-post="/user">
+        <form hx-post="/cards"
+              hx-target="#cards-table"
+              hx-swap="beforeend"
+              hx-on::after-request="this.reset()">
             <fieldset class="grid">
                 <select name="type" aria-label="Type" required>
                     @for(type in CardType.values())
@@ -16,7 +19,9 @@ content = @`
                     @endfor
                 </select>
                 <input name="content" type="text" placeholder="Content" aria-label="Content" required/>
-                <input type="submit" value="Create"/>
+                <button type="submit">Create
+                    <span class="spinner">⏳</span>
+                </button>
             </fieldset>
         </form>
     </section>
@@ -28,9 +33,10 @@ content = @`
                 <td>Type</td>
                 <td>Content</td>
                 <td>Created at</td>
+                <td></td>
             </tr>
             </thead>
-            <tbody id="users-table">
+            <tbody id="cards-table">
             @for(card in cards)
                 @template.component.card-row(card = card)
             @endfor

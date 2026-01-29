@@ -1,11 +1,10 @@
 package ch.ranil.kortti.web
 
+import ch.ranil.kortti.domain.card.CardId
 import ch.ranil.kortti.domain.card.CardService
 import ch.ranil.kortti.templates.Templates
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+import java.util.*
 
 @RestController
 class Controller(
@@ -19,9 +18,15 @@ class Controller(
         return templates.pageOverview(cards).render()
     }
 
-    @PostMapping("/card")
-    fun createCard(@RequestBody data: CardFormData): String {
+    @PostMapping("/cards")
+    fun createCard(data: CardFormData): String {
+        Thread.sleep(2000)
         val card = cardService.createCard(data)
         return templates.componentCardRow(card).render()
+    }
+
+    @DeleteMapping("/cards/{id}")
+    fun deleteCard(@PathVariable id: UUID) {
+        cardService.deleteCard(CardId(id))
     }
 }

@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "2.3.0"
+    kotlin("jvm") version "2.2.20"
     id("org.jetbrains.kotlin.plugin.spring") version "2.3.0"
     id("org.springframework.boot") version "3.5.10"
     id("io.spring.dependency-management") version "1.1.7"
@@ -11,7 +11,7 @@ version = "0.0.1-SNAPSHOT"
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(23)
     }
 }
 
@@ -31,7 +31,7 @@ dependencies {
     implementation("org.webjars.npm:htmx.org:2.0.8")
     implementation("org.webjars.npm:picocss__pico:2.1.1")
 
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
+    //developmentOnly("org.springframework.boot:spring-boot-devtools")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")

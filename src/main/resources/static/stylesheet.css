@@ -1,0 +1,19 @@
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Hide the spinner by default */
+.spinner {
+    display: none;
+    animation: spin 1s linear infinite; /* Apply the animation */
+}
+
+/* Show it only when the button is in a request state */
+.htmx-request .spinner {
+    display: inline;
+}

@@ -2,11 +2,15 @@
 
 @param card: Card
 
-<tr>
-    <td>
-        <a href="/cards/${card.id.value.toString()}">
-            ${card.content}
-        </a>
-    </td>
+<tr id="card-${card.id.value.toString()}">
+    <td>${card.type.name}</td>
+    <td>${card.content}</td>
     <td>${card.createdAt.toString()}</td>
+    <td>
+        <button hx-delete="/cards/${card.id.value.toString()}"
+                hx-target="#card-${card.id.value.toString()}"
+                hx-swap="outerHTML">
+            Delete
+        </button>
+    </td>
 </tr>

@@ -22,4 +22,8 @@ class CardService(
     fun getCards(): List<Card> {
         return cardRepository.getAll()
     }
+
+    fun deleteCard(id: CardId) {
+        cardRepository.delete(id)
+    }
 }

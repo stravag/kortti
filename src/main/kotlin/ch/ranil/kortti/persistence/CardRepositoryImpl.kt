@@ -19,8 +19,8 @@ class CardRepositoryImpl : CardRepository {
         return cards.values.toList()
     }
 
-    override fun getById(id: CardId): Card {
-        return cards.getValue(id)
+    override fun delete(id: CardId) {
+        cards.remove(id)
     }
 
     companion object {
