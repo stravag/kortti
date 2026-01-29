@@ -28,6 +28,9 @@ dependencies {
     implementation("gg.jte:jte-kotlin:3.2.2")
     jteGenerate("gg.jte:jte-models:3.2.2")
 
+    implementation("org.webjars.npm:htmx.org:2.0.8")
+    implementation("org.webjars.npm:picocss__pico:2.1.1")
+
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 

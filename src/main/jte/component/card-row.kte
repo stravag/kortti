@@ -5,8 +5,8 @@
 <tr>
     <td>
         <a href="/cards/${card.id.value.toString()}">
-            ${card.name}
+            ${card.content}
         </a>
     </td>
-    <td>${card.entries.count()}</td>
+    <td>${card.createdAt.toString()}</td>
 </tr>

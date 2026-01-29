@@ -12,5 +12,4 @@ open class IdFactory<T : Id>(klass: KClass<T>) {
     private val constructor = requireNotNull(klass.primaryConstructor)
 
     fun random(): T = constructor.call(UUID.randomUUID())
-    fun parse(s: String): T = constructor.call(UUID.fromString(s))
 }

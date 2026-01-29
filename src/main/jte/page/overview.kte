@@ -1,0 +1,40 @@
+@import ch.ranil.kortti.domain.card.Card
+@import ch.ranil.kortti.domain.card.CardType
+
+@param cards: List<Card>
+
+@template.layouts.main(
+title = "Kortti",
+content = @`
+    <h1>Kortti</h1>
+    <section>
+        <form hx-post="/user">
+            <fieldset class="grid">
+                <select name="type" aria-label="Type" required>
+                    @for(type in CardType.values())
+                        <option value="${type.name}">${type.toString()}</option>
+                    @endfor
+                </select>
+                <input name="content" type="text" placeholder="Content" aria-label="Content" required/>
+                <input type="submit" value="Create"/>
+            </fieldset>
+        </form>
+    </section>
+    <section>
+        <h2>Cards</h2>
+        <table>
+            <thead>
+            <tr>
+                <td>Type</td>
+                <td>Content</td>
+                <td>Created at</td>
+            </tr>
+            </thead>
+            <tbody id="users-table">
+            @for(card in cards)
+                @template.component.card-row(card = card)
+            @endfor
+            </tbody>
+        </table>
+    </section>
+`)

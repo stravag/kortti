@@ -2,6 +2,7 @@ package ch.ranil.kortti.domain.card
 
 import ch.ranil.kortti.web.CardFormData
 import org.springframework.stereotype.Service
+import java.time.LocalDateTime
 
 @Service
 class CardService(
@@ -10,7 +11,9 @@ class CardService(
     fun createCard(data: CardFormData): Card {
         val card = Card(
             id = CardId.random(),
-            name = data.name.ifBlank { "MISSING" },
+            type = data.type,
+            content = data.content.ifBlank { "MISSING" },
+            createdAt = LocalDateTime.now()
         )
         cardRepository.save(card)
         return card
@@ -18,23 +21,5 @@ class CardService(
 
     fun getCards(): List<Card> {
         return cardRepository.getAll()
-    }
-
-    fun getCard(cardId: CardId): Card {
-        return cardRepository.getById(cardId)
-    }
-
-    fun addEntryToCard(cardId: CardId): Card {
-        val card = cardRepository.getById(cardId)
-        card.addEntry()
-        cardRepository.save(card)
-        return card
-    }
-
-    fun deleteEntryFromCard(cardId: CardId, cardEntryId: CardEntryId): Card {
-        val card = cardRepository.getById(cardId)
-        card.deleteEntry(cardEntryId)
-        cardRepository.save(card)
-        return card
     }
 }
