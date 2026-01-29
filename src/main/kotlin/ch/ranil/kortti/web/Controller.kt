@@ -20,7 +20,7 @@ class Controller(
     }
 
     @GetMapping("/cards/{cardId}")
-    fun cardDetailPage(@PathVariable("cardId") cardId: UUID): String {
+    fun cardDetailPage(@PathVariable cardId: UUID): String {
         val card = cardService.getCard(CardId(cardId))
         return templates.pageCardDetail(card).render()
     }
