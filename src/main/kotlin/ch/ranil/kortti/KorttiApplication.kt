@@ -1,6 +1,7 @@
 package ch.ranil.kortti
 
 import ch.ranil.kortti.templates.DynamicTemplates
+import ch.ranil.kortti.templates.StaticTemplates
 import ch.ranil.kortti.templates.Templates
 import gg.jte.ContentType
 import gg.jte.TemplateEngine
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Primary
 import java.nio.file.Path
 
 @SpringBootApplication
@@ -20,6 +22,12 @@ fun main(args: Array<String>) {
 
 @Configuration
 class TemplateConfig {
+    @Bean
+    @Primary
+    fun staticTemplates(): Templates {
+        return StaticTemplates()
+    }
+
     @Bean
     fun dynamicTemplates(): Templates {
         val resolver = DirectoryCodeResolver(Path.of("src/main/jte"))

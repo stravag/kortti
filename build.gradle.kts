@@ -24,7 +24,6 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
     implementation("gg.jte:jte:3.2.2")
-    implementation("gg.jte:jte-runtime:3.2.2")
     implementation("gg.jte:jte-kotlin:3.2.2")
     jteGenerate("gg.jte:jte-models:3.2.2")
 
@@ -46,9 +45,7 @@ kotlin {
 }
 
 jte {
-    precompile()
     generate()
-    contentType = gg.jte.ContentType.Html
     packageName = "ch.ranil.kortti.templates"
     jteExtension("gg.jte.models.generator.ModelExtension") {
         property("language", "Kotlin")
