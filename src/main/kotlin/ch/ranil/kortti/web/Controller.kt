@@ -14,13 +14,19 @@ class Controller(
 
     @GetMapping("/")
     fun overviewPage(): String {
+        return templates.pageOverview().render()
+    }
+
+    @GetMapping("/cards")
+    fun getCards(): String {
+        sleep()
         val cards = cardService.getCards()
-        return templates.pageOverview(cards).render()
+        return templates.componentCardTable(cards).render()
     }
 
     @PostMapping("/cards")
     fun createCard(data: CardFormData): String {
-        Thread.sleep(2000)
+        sleep()
         val card = cardService.createCard(data)
         return templates.componentCardRow(card).render()
     }
@@ -28,5 +34,10 @@ class Controller(
     @DeleteMapping("/cards/{id}")
     fun deleteCard(@PathVariable id: UUID) {
         cardService.deleteCard(CardId(id))
+    }
+
+    private fun sleep() {
+        val sleepDuration = (Math.random() * 1000L).toLong()
+        Thread.sleep(sleepDuration)
     }
 }
