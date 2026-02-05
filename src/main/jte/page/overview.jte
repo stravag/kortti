@@ -11,8 +11,8 @@ content = @`
               hx-on::after-request="this.reset()">
             <fieldset class="grid">
                 <select name="type" aria-label="Type" required>
-                    @for(type in CardType.values())
-                        <option value="${type.name}">${type.toString()}</option>
+                    @for(var type : CardType.getEntries())
+                        <option value="${type.name()}">${type.toString()}</option>
                     @endfor
                 </select>
                 <input name="content" type="text" placeholder="Content" aria-label="Content" required/>

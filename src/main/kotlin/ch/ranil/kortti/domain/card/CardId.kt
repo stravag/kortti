@@ -4,7 +4,6 @@ import ch.ranil.kortti.domain.Id
 import ch.ranil.kortti.domain.IdFactory
 import java.util.*
 
-@JvmInline
-value class CardId(override val value: UUID) : Id {
+data class CardId(override val value: UUID) : Id {
     companion object : IdFactory<CardId>(CardId::class)
 }

@@ -24,7 +24,6 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
     implementation("gg.jte:jte:3.2.2")
-    implementation("gg.jte:jte-kotlin:3.2.2")
     jteGenerate("gg.jte:jte-models:3.2.2")
 
     implementation("org.webjars.npm:htmx.org:2.0.8")
@@ -47,9 +46,7 @@ kotlin {
 jte {
     generate()
     packageName = "ch.ranil.kortti.templates"
-    jteExtension("gg.jte.models.generator.ModelExtension") {
-        property("language", "Kotlin")
-    }
+    jteExtension("gg.jte.models.generator.ModelExtension")
 }
 
 tasks.withType<Test> {

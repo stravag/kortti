@@ -1,8 +1,9 @@
 @import gg.jte.Content
 
-@param title: String
-@param content: Content
+@param String title
+@param Content content
 
+<!--suppress HtmlUnknownTarget -->
 <html lang="en">
 <head>
     <title>${title}</title>

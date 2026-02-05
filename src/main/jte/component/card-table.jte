@@ -1,6 +1,7 @@
 @import ch.ranil.kortti.domain.card.Card
+@import java.util.List
 
-@param cards: List<Card>
+@param List<Card> cards
 
 <table>
     <thead>
@@ -12,7 +13,7 @@
     </tr>
     </thead>
     <tbody id="cards-table">
-    @for(card in cards)
+    @for(var card : cards)
         @template.component.card-row(card = card)
     @endfor
     </tbody>
