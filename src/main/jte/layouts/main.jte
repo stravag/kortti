@@ -18,6 +18,15 @@
 </head>
 <body>
 <main class="container">
+    <nav>
+        <ul>
+            <li><strong>${title}</strong></li>
+        </ul>
+        <ul>
+            <li><a href="/">Cards</a></li>
+            <li><a href="/stats">Stats</a></li>
+        </ul>
+    </nav>
     ${content}
 </main>
 </body>

@@ -2,19 +2,20 @@ package ch.ranil.kortti.web
 
 import ch.ranil.kortti.domain.card.CardId
 import ch.ranil.kortti.domain.card.CardService
+import ch.ranil.kortti.domain.card.CardType
 import ch.ranil.kortti.templates.Templates
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
 @RestController
-class Controller(
+class CardController(
     private val cardService: CardService,
     private val templates: Templates
 ) {
 
-    @GetMapping("/")
-    fun overviewPage(): String {
-        return templates.pageOverview().render()
+    @GetMapping
+    fun page(): String {
+        return templates.pageCards().render()
     }
 
     @GetMapping("/cards")
@@ -40,4 +41,9 @@ class Controller(
         val sleepDuration = (Math.random() * 1000L).toLong()
         Thread.sleep(sleepDuration)
     }
+
+    data class CardFormData(
+        val content: String,
+        val type: CardType,
+    )
 }

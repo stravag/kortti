@@ -1,6 +1,6 @@
 package ch.ranil.kortti.domain.card
 
-import ch.ranil.kortti.web.CardFormData
+import ch.ranil.kortti.web.CardController
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 
@@ -8,7 +8,7 @@ import java.time.LocalDateTime
 class CardService(
     private val cardRepository: CardRepository,
 ) {
-    fun createCard(data: CardFormData): Card {
+    fun createCard(data: CardController.CardFormData): Card {
         val card = Card(
             id = CardId.random(),
             type = data.type,

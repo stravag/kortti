@@ -3,7 +3,6 @@
 @template.layouts.main(
 title = "Kortti",
 content = @`
-    <h1>Kortti</h1>
     <section>
         <form hx-post="/cards"
               hx-target="#cards-table"
