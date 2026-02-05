@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*
 import java.util.*
 
 @RestController
-class CardController(
+class CardsController(
     private val cardService: CardService,
     private val templates: Templates
 ) {
