@@ -1,5 +1,7 @@
 @template.layouts.main(
 title = "Stats",
 content = @`
-    <button>Load Stats</button>
+    <button hx-get="/stats/load-stream" hx-target="#stream-output">Load Stats</button>
+    <section id="stream-output">
+    </section>
 `)
