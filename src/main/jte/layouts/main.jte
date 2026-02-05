@@ -13,7 +13,7 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="/webjars/picocss__pico/2.1.1/css/pico.css">
     <link rel="stylesheet" href="/stylesheet.css">
-    <script src="/webjars/htmx.org/2.0.8/dist/htmx.min.js"></script>
+    <script src="/webjars/htmx.org/4.0.0-alpha6/dist/htmx.min.js"></script>
     <script src="/modal.js"></script>
 </head>
 <body>
