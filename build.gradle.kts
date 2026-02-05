@@ -34,6 +34,8 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    testImplementation("com.microsoft.playwright:playwright:1.57.0")
 }
 
 kotlin {
@@ -46,6 +48,11 @@ jte {
     generate()
     packageName = "ch.ranil.kortti.templates"
     jteExtension("gg.jte.models.generator.ModelExtension")
+}
+
+tasks.register<JavaExec>("playwright") {
+    classpath(sourceSets["test"].runtimeClasspath)
+    mainClass.set("com.microsoft.playwright.CLI")
 }
 
 tasks.withType<Test> {
