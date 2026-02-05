@@ -29,7 +29,7 @@ dependencies {
     implementation("org.webjars.npm:htmx.org:2.0.8")
     implementation("org.webjars.npm:picocss__pico:2.1.1")
 
-    //developmentOnly("org.springframework.boot:spring-boot-devtools")
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")

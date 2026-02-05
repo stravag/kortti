@@ -23,12 +23,12 @@ fun main(args: Array<String>) {
 @Configuration
 class TemplateConfig {
     @Bean
-    @Primary
     fun staticTemplates(): Templates {
         return StaticTemplates()
     }
 
     @Bean
+    @Primary
     fun dynamicTemplates(): Templates {
         val resolver = DirectoryCodeResolver(Path.of("src/main/jte"))
         val templateEngine = TemplateEngine.create(resolver, ContentType.Html)
