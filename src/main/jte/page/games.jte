@@ -3,6 +3,9 @@
 @template.layouts.main(
 title = "Game",
 content = @`
+    <section>
+        Simple client side logic combined with htmx attributes for communication with server.
+    </section>
     <!-- Game Controls and Stats -->
     <div>
         <button id="start-btn" onclick="startGame()">Start Game</button>

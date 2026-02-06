@@ -3,6 +3,10 @@
 @template.layouts.main(
 title = "Charts",
 content = @`
+    <section>
+        HTMX in combination with third-party JavaScript Library Chart.js
+    </section>
+
     <select id="data-selector"
             name="datasetType"
             hx-get="/charts/dataset"

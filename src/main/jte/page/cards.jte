@@ -4,6 +4,9 @@
 title = "Kortti",
 content = @`
     <section>
+        HTMX showcasing hypermedia approach.
+    </section>
+    <section>
         <form hx-post="/cards"
               hx-target="#cards-table"
               hx-swap="beforeend"
