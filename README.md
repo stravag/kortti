@@ -1,6 +1,6 @@
-# HTMX Pet Project
+# HTMX Playground
 
-This is a simple sandbox/pet project to fumble with server side rendering.
+This is a simple sandbox/playground to fumble with server side rendering.
 I added [Pico CSS](https://picocss.com/), but it still looks like ass
 #backenddevproblems.
 
