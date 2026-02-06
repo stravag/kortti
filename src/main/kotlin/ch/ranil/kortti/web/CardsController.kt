@@ -23,7 +23,7 @@ class CardsController(
     fun getCards(): String {
         sleep()
         val cards = cardService.getCards()
-        return templates.componentCardTable(cards).render()
+        return templates.componentCardTableContent(cards).render()
     }
 
     @PostMapping("/cards")

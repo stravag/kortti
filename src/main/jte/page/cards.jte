@@ -8,7 +8,7 @@ content = @`
     </section>
     <section>
         <form hx-post="/cards"
-              hx-target="#cards-table"
+              hx-target="#cards-table-body"
               hx-swap="beforeend"
               hx-on::after-request="this.reset()">
             <fieldset class="grid">
@@ -26,8 +26,22 @@ content = @`
     </section>
     <section>
         <h2>Cards</h2>
-        <div hx-get="/cards" hx-trigger="load">
-            <span class="spinner">⏳</span>
-        </div>
+        <table>
+            <thead>
+            <tr>
+                <td>Type</td>
+                <td>Content</td>
+                <td>Created at</td>
+                <td></td>
+            </tr>
+            </thead>
+            <tbody id="cards-table-body"
+                   hx-get="/cards"
+                   hx-trigger="load">
+            <tr>
+                <td colspan="4"><span class="spinner">⏳</span></td>
+            </tr>
+            </tbody>
+        </table>
     </section>
 `)
