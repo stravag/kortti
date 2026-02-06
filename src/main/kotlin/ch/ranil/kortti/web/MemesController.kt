@@ -35,8 +35,10 @@ class MemesController(
                     Thread.sleep(Random.nextLong(100, 500))
                 } while (progress < 100)
                 val event = SseEmitter.event()
+                    .name("completed")
                     .data("<img src=\"https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmN4ZjB4MWVicGduNmttajdteDM0MWdpZDQzdW50cmNhdng2ODB5eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yYSSBtDgbbRzq/giphy.gif\">")
                 emitter.send(event)
+                emitter.complete()
             } catch (ex: Exception) {
                 emitter.completeWithError(ex)
             }

@@ -17,7 +17,7 @@
     <script src="/webjars/htmx.org/2.0.8/dist/htmx.min.js"></script>
     <script src="/webjars/htmx-ext-sse/2.2.4/dist/sse.js"></script>
 </head>
-<body>
+<body hx-boost="true">
 <main class="container">
     <nav>
         <ul>
