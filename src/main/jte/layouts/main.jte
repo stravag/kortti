@@ -25,6 +25,7 @@
         <ul>
             <li><a href="/">Cards</a></li>
             <li><a href="/memes">Memes</a></li>
+            <li><a href="/games">Games</a></li>
         </ul>
     </nav>
     ${content}
