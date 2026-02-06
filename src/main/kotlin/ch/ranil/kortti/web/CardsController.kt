@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*
 import java.util.*
 
 @RestController
+@RequestMapping("/", produces = ["text/html"])
 class CardsController(
     private val cardService: CardService,
     private val templates: Templates

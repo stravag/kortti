@@ -4,6 +4,7 @@
 @param Content content
 
 <!--suppress HtmlUnknownTarget -->
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>${title}</title>
@@ -13,7 +14,7 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="/webjars/picocss__pico/2.1.1/css/pico.css">
     <link rel="stylesheet" href="/stylesheet.css">
-    <script src="/webjars/htmx.org/4.0.0-alpha6/dist/htmx.min.js"></script>
+    <script src="/webjars/htmx.org/2.0.8/dist/htmx.min.js"></script>
     <script src="/modal.js"></script>
 </head>
 <body>
@@ -26,6 +27,7 @@
             <li><a href="/">Cards</a></li>
             <li><a href="/memes">Memes</a></li>
             <li><a href="/games">Games</a></li>
+            <li><a href="/charts">Charts</a></li>
         </ul>
     </nav>
     ${content}

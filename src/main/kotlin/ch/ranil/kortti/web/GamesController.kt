@@ -9,7 +9,7 @@ import kotlin.math.max
 
 
 @RestController
-@RequestMapping("/games")
+@RequestMapping("/games", produces = ["text/html"])
 class GamesController(
     private val templates: Templates
 ) {

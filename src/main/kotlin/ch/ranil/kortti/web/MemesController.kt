@@ -10,7 +10,7 @@ import kotlin.random.Random
 
 
 @RestController
-@RequestMapping("/memes")
+@RequestMapping("/memes", produces = ["text/html"])
 class MemesController(
     private val templates: Templates
 ) {
