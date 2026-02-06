@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/webjars/picocss__pico/2.1.1/css/pico.css">
     <link rel="stylesheet" href="/stylesheet.css">
     <script src="/webjars/htmx.org/2.0.8/dist/htmx.min.js"></script>
-    <script src="/modal.js"></script>
+    <script src="/webjars/htmx-ext-sse/2.2.4/dist/sse.js"></script>
 </head>
 <body>
 <main class="container">

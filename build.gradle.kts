@@ -27,6 +27,7 @@ dependencies {
     jteGenerate("gg.jte:jte-models:3.2.2")
 
     implementation("org.webjars.npm:htmx.org:2.0.8")
+    implementation("org.webjars.npm:htmx-ext-sse:2.2.4")
     implementation("org.webjars.npm:picocss__pico:2.1.1")
     implementation("org.webjars.npm:chart.js:4.5.1")
 

@@ -1,7 +1,9 @@
 @template.layouts.main(
 title = "Memes",
 content = @`
-    <button hx-get="/memes/load-meme" hx-target="#stream-output">Load asynchronously</button>
-    <section id="stream-output">
-    </section>
+    <div hx-ext="sse" sse-connect="/memes/load-meme">
+        <div sse-swap="message">
+            Waiting for updates...
+        </div>
+    </div>
 `)
