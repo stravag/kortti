@@ -92,6 +92,7 @@ content = @`
             box.style.backgroundColor = 'red';
             box.style.position = 'absolute';
             box.style.cursor = 'pointer';
+            box.className = 'box';
 
             const maxX = gameContainer.clientWidth - size;
             const maxY = gameContainer.clientHeight - size;
