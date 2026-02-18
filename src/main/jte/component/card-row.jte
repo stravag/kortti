@@ -10,7 +10,8 @@
     <td>${card.getCreatedAt().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT))}</td>
     <td>
         <button hx-delete="/cards/${card.getId().getValue().toString()}"
-                hx-target="body">
+                hx-target="#card-${card.getId().getValue().toString()}"
+                hx-swap="outerHTML">
             Delete
         </button>
     </td>

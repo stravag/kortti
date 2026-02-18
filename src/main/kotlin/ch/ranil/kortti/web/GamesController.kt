@@ -21,7 +21,8 @@ class GamesController(
     }
 
     @PostMapping("/highscore")
-    fun saveScore(score: Int) {
+    fun saveScore(score: Int): String {
         highscore = max(score, highscore)
+        return templates.componentScores(highscore).render()
     }
 }

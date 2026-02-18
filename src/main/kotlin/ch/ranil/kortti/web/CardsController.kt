@@ -6,6 +6,9 @@ import ch.ranil.kortti.domain.card.CardType
 import ch.ranil.kortti.templates.Templates
 import org.springframework.web.bind.annotation.*
 import java.util.*
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 @RestController
 @RequestMapping("/", produces = ["text/html"])
@@ -16,34 +19,31 @@ class CardsController(
 
     @GetMapping
     fun page(): String {
-        val cards = cardService.getCards()
-        return templates.pageCards(cards).render()
+        return templates.pageCards().render()
     }
 
     @GetMapping("/cards")
     fun getCards(): String {
-        sleep()
+        sleepAtLeast(3.seconds)
         val cards = cardService.getCards()
         return templates.componentCardTableContent(cards).render()
     }
 
     @PostMapping("/cards")
     fun createCard(data: CardFormData): String {
-        sleep()
+        sleepAtLeast(500.milliseconds)
         cardService.createCard(data)
         val cards = cardService.getCards()
-        return templates.pageCards(cards).render()
+        return templates.componentCardTableContent(cards).render()
     }
 
     @DeleteMapping("/cards/{id}")
-    fun deleteCard(@PathVariable id: UUID): String {
+    fun deleteCard(@PathVariable id: UUID) {
         cardService.deleteCard(CardId(id))
-        val cards = cardService.getCards()
-        return templates.pageCards(cards).render()
     }
 
-    private fun sleep() {
-        val sleepDuration = (Math.random() * 1000L).toLong()
+    private fun sleepAtLeast(duration: Duration = 1.seconds) {
+        val sleepDuration = (Math.random() * duration.inWholeMilliseconds).toLong()
         Thread.sleep(sleepDuration)
     }
 

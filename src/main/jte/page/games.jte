@@ -7,19 +7,7 @@ content = @`
         Simple client side logic combined with htmx attributes for communication with server.
     </section>
     <!-- Game Controls and Stats -->
-    <div>
-        <button id="start-btn" onclick="startGame()">Start Game</button>
-        <p>Time Left: <span id="timer">10</span>s</p>
-        <!-- Score container is hidden by default -->
-        <div id="final-score-container" style="display: none;">
-            <p>Final Score: <span id="score">0</span></p>
-            <form hx-post="/games/highscore">
-                <input id="score-field" type="hidden" name="score" value="0">
-                <input type="submit" value="Submit Score">
-            </form>
-        </div>
-        <div>High Score: ${highscore}</div>
-    </div>
+    @template.component.scores(highscore = highscore)
 
     <!-- Game Area: Boxes will appear inside here -->
     <div id="game-container"
@@ -38,17 +26,24 @@ content = @`
         let gameTimerInterval;
 
         // DOM Elements
-        const startBtn = document.getElementById('start-btn');
-        const timerDisplay = document.getElementById('timer');
-        const scoreDisplay = document.getElementById('score');
-        const scoreField = document.getElementById('score-field');
-        const gameContainer = document.getElementById('game-container');
-        const finalScoreContainer = document.getElementById('final-score-container');
+        let startBtn;
+        let timerDisplay;
+        let scoreDisplay;
+        let scoreField;
+        let gameContainer;
+        let finalScoreContainer;
 
         /**
          * Starts the game logic, resets state, and begins the countdown.
          */
         function startGame() {
+            startBtn = document.getElementById('start-btn');
+            timerDisplay = document.getElementById('timer');
+            scoreDisplay = document.getElementById('score');
+            scoreField = document.getElementById('score-field');
+            gameContainer = document.getElementById('game-container');
+            finalScoreContainer = document.getElementById('final-score-container');
+
             if (gameActive) return;
 
             // Reset state
