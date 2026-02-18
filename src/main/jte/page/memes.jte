@@ -2,17 +2,10 @@
 title = "Memes",
 subTitle = "Using SSE (Server Sent Events) to update the page in real-time",
 content = @`
-    <div id="meme-container">
-        <div hx-ext="sse"
-             sse-connect="/memes/load-meme">
-
-            <div sse-swap="message">
-                Waiting for updates...
-            </div>
-
-            <div sse-swap="completed"
-                 hx-target="#meme-container">
-            </div>
-        </div>
+    <button hx-post="/memes/meme-broadcast" hx-swap="none">Send Meme</button>
+    <div hx-ext="sse"
+         sse-connect="/memes/meme-listener"
+         sse-swap="meme">
+        Waiting for memes...
     </div>
 `)
