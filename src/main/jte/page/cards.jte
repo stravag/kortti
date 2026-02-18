@@ -1,4 +1,8 @@
+@import ch.ranil.kortti.domain.card.Card
 @import ch.ranil.kortti.domain.card.CardType
+@import java.util.List
+
+@param List<Card> cards
 
 @template.layouts.main(
 title = "Kortti",
@@ -8,9 +12,7 @@ content = @`
     </section>
     <section>
         <form hx-post="/cards"
-              hx-target="#cards-table-body"
-              hx-swap="beforeend"
-              hx-on::after-request="this.reset()">
+              hx-target="body">
             <fieldset class="grid">
                 <select name="type" aria-label="Type" required>
                     @for(var type : CardType.getEntries())
@@ -38,9 +40,7 @@ content = @`
             <tbody id="cards-table-body"
                    hx-get="/cards"
                    hx-trigger="load">
-            <tr>
-                <td colspan="4"><span class="spinner">⏳</span></td>
-            </tr>
+            @template.component.card-table-content(cards = cards)
             </tbody>
         </table>
     </section>
