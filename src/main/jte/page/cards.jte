@@ -1,16 +1,14 @@
 @import ch.ranil.kortti.domain.card.CardType
 
 @template.layouts.main(
-title = "Kortti",
+title = "Cards",
+subTitle = "HTMX showcasing hypermedia approach",
 content = @`
     <section>
-        HTMX showcasing hypermedia approach.
-    </section>
-    <section>
+        <!-- form to create a new card -->
         <form hx-post="/cards"
               hx-target="#cards-table-body"
-              hx-swap="innerHTML"
-              hx-on::after-request="this.reset()">
+              hx-swap="innerHTML">
             <fieldset class="grid">
                 <select name="type" aria-label="Type" required>
                     @for(var type : CardType.getEntries())
@@ -25,7 +23,6 @@ content = @`
         </form>
     </section>
     <section>
-        <h2>Cards</h2>
         <table>
             <thead>
             <tr>

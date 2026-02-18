@@ -2,10 +2,8 @@
 
 @template.layouts.main(
 title = "Game",
+subTitle = "Simple client side logic combined with htmx attributes for communication with server",
 content = @`
-    <section>
-        Simple client side logic combined with htmx attributes for communication with server.
-    </section>
     <!-- Game Controls and Stats -->
     @template.component.scores(highscore = highscore)
 

@@ -2,11 +2,8 @@
 
 @template.layouts.main(
 title = "Charts",
+subTitle = "HTMX in combination with third-party JavaScript Library Chart.js",
 content = @`
-    <section>
-        HTMX in combination with third-party JavaScript Library Chart.js
-    </section>
-
     <select id="data-selector"
             name="datasetType"
             hx-get="/charts/dataset"
@@ -51,6 +48,6 @@ content = @`
         // trigger htmx once chart is ready
         setTimeout(() => {
             htmx.trigger("#data-selector", "change");
-        }, 100);
+        }, 50);
     </script>
 `)

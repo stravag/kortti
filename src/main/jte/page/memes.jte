@@ -1,9 +1,7 @@
 @template.layouts.main(
 title = "Memes",
+subTitle = "Using SSE (Server Sent Events) to update the page in real-time",
 content = @`
-    <section>
-        Using SSE (Server Sent Events) to update the page in real-time.
-    </section>
     <div id="meme-container">
         <div hx-ext="sse"
              sse-connect="/memes/load-meme">

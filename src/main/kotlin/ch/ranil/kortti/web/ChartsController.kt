@@ -15,7 +15,6 @@ class ChartsController(
     private val datasetService: DatasetService,
 ) {
 
-
     @GetMapping
     fun page(): String {
         return templates.pageCharts().render()
