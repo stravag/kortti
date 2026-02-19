@@ -12,7 +12,7 @@ content = @`
             <fieldset class="grid">
                 <select name="type" aria-label="Type" required>
                     @for(var type : CardType.getEntries())
-                        <option value="${type.name()}">${type.toString()}</option>
+                        <option value="${type.name()}">${type.name()}</option>
                     @endfor
                 </select>
                 <input name="content" type="text" placeholder="Content" aria-label="Content" required/>

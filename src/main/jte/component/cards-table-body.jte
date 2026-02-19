@@ -7,7 +7,7 @@
 
 @for(var card : cards)
     <tr id="card-${card.getId().getValue().toString()}">
-        <td>${card.getType().name()}</td>
+        <td>${card.getType().displayName()}</td>
         <td>${card.getContent()}</td>
         <td>${card.getCreatedAt().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT))}</td>
         <td>

@@ -17,13 +17,13 @@ class CardsController(
     private val templates: Templates
 ) {
 
-    @GetMapping
-    fun page(): String {
-        return templates.pageCards().render()
-    }
-
     @GetMapping("/cards")
-    fun getCards(): String {
+    fun getCards(
+        @RequestHeader("Hx-Boosted") boosted: Boolean?,
+        @RequestHeader("Hx-Request") hxRequest: Boolean?,
+    ): String {
+        if (boosted == true || hxRequest != true) return templates.pageCards().render()
+
         sleepAtLeast(3.seconds)
         val cards = cardService.getCards()
         return templates.componentCardsTableBody(cards).render()

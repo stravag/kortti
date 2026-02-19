@@ -4,5 +4,12 @@ enum class CardType {
     GENERIC,
     BIRTHDAY,
     WEDDING,
-    SYMPATHY,
+    SYMPATHY;
+
+    fun displayName() = when (this) {
+        GENERIC -> "🤷"
+        BIRTHDAY -> "🎂"
+        WEDDING -> "💍"
+        SYMPATHY -> "🖤"
+    }
 }

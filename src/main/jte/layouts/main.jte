@@ -2,6 +2,7 @@
 
 @param String title
 @param String subTitle
+@param boolean showNavigation = true
 @param Content content
 
 <!DOCTYPE html>
@@ -25,17 +26,19 @@
 </head>
 <body hx-boost="true">
 <main class="container">
-    <nav>
-        <ul>
-            <li><strong>${title}</strong></li>
-        </ul>
-        <ul>
-            <li><a href="/">Cards</a></li>
-            <li><a href="/memes">Memes</a></li>
-            <li><a href="/games">Games</a></li>
-            <li><a href="/charts">Charts</a></li>
-        </ul>
-    </nav>
+    @if (showNavigation)
+        <nav>
+            <ul>
+                <li><strong>${title}</strong></li>
+            </ul>
+            <ul>
+                <li><a href="/cards">Cards</a></li>
+                <li><a href="/memes">Memes</a></li>
+                <li><a href="/games">Games</a></li>
+                <li><a href="/charts">Charts</a></li>
+            </ul>
+        </nav>
+    @endif
     <section>
         ${subTitle}
     </section>
