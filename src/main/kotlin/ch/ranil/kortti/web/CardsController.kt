@@ -26,7 +26,7 @@ class CardsController(
     fun getCards(): String {
         sleepAtLeast(3.seconds)
         val cards = cardService.getCards()
-        return templates.componentCardTableContent(cards).render()
+        return templates.componentCardsTableBody(cards).render()
     }
 
     @PostMapping("/cards")
@@ -34,7 +34,7 @@ class CardsController(
         sleepAtLeast(500.milliseconds)
         cardService.createCard(data)
         val cards = cardService.getCards()
-        return templates.componentCardTableContent(cards).render()
+        return templates.componentCardsTableBody(cards).render()
     }
 
     @DeleteMapping("/cards/{id}")
