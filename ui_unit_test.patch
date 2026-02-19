@@ -1,0 +1,142 @@
+Subject: [PATCH] ui unit test
+---
+Index: src/test/kotlin/ch/ranil/kortti/CardsPageUnitTest.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/kotlin/ch/ranil/kortti/CardsPageUnitTest.kt b/src/test/kotlin/ch/ranil/kortti/CardsPageUnitTest.kt
+new file mode 100644
+--- /dev/null	(date 1771534683202)
++++ b/src/test/kotlin/ch/ranil/kortti/CardsPageUnitTest.kt	(date 1771534683202)
+@@ -0,0 +1,106 @@
++package ch.ranil.kortti
++
++import ch.ranil.kortti.domain.card.Card
++import ch.ranil.kortti.domain.card.CardService
++import ch.ranil.kortti.domain.card.CardType
++import ch.ranil.kortti.web.CardsController
++import com.microsoft.playwright.Page
++import com.microsoft.playwright.Page.GetByRoleOptions
++import com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat
++import com.microsoft.playwright.options.AriaRole
++import org.junit.jupiter.api.Test
++import org.mockito.BDDMockito.given
++import org.springframework.boot.autoconfigure.ImportAutoConfiguration
++import org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration
++import org.springframework.boot.autoconfigure.http.HttpMessageConvertersAutoConfiguration
++import org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration
++import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletAutoConfiguration
++import org.springframework.boot.autoconfigure.web.servlet.HttpEncodingAutoConfiguration
++import org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration
++import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration
++import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
++import org.springframework.boot.test.context.SpringBootTest
++import org.springframework.test.context.bean.override.mockito.MockitoBean
++
++@ImportAutoConfiguration(
++    classes = [
++        ServletWebServerFactoryAutoConfiguration::class,
++        DispatcherServletAutoConfiguration::class,
++        WebMvcAutoConfiguration::class,
++        HttpMessageConvertersAutoConfiguration::class,
++        JacksonAutoConfiguration::class,
++        PropertyPlaceholderAutoConfiguration::class,
++        HttpEncodingAutoConfiguration::class,
++        ErrorMvcAutoConfiguration::class,
++        TemplateConfig::class,
++    ]
++)
++class SharedWebUnitTestConfig
++
++@SpringBootTest(
++    webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
++    classes = [
++        CardsController::class,
++        SharedWebUnitTestConfig::class,
++    ]
++)
++class CardsPageUnitTest : AbstractPageTest() {
++
++    @MockitoBean
++    lateinit var cardsService: CardService
++
++    @Test
++    fun `can create and delete card`() {
++        given(cardsService.getCards())
++            .willReturn(
++                listOf(
++                )
++            )
++            .willReturn(
++                listOf(
++                    Card(type = CardType.BIRTHDAY, content = "test1"),
++                )
++            )
++            .willReturn(
++                listOf(
++                    Card(type = CardType.BIRTHDAY, content = "test1"),
++                    Card(type = CardType.BIRTHDAY, content = "test2"),
++                )
++            )
++            .willReturn(
++                listOf(
++                    Card(type = CardType.BIRTHDAY, content = "test1"),
++                    Card(type = CardType.BIRTHDAY, content = "test2"),
++                    Card(type = CardType.BIRTHDAY, content = "test3"),
++                )
++            )
++            .willReturn(
++                listOf(
++                    Card(type = CardType.BIRTHDAY, content = "test1"),
++                    Card(type = CardType.BIRTHDAY, content = "test2"),
++                    Card(type = CardType.BIRTHDAY, content = "test3"),
++                )
++            )
++
++        navigate("/")
++        page.addCard("test1")
++        page.addCard("test2")
++        page.addCard("test3")
++
++        page.deleteCard("test2")
++    }
++
++    private fun Page.addCard(name: String, type: CardType? = null) {
++        type?.let { getByLabel("Type").selectOption(type.name) }
++        getByRole(AriaRole.TEXTBOX, GetByRoleOptions().setName("Content")).click()
++        getByRole(AriaRole.TEXTBOX, GetByRoleOptions().setName("Content")).fill(name)
++        getByRole(AriaRole.BUTTON, GetByRoleOptions().setName("Create")).click()
++        assertThat(getByRole(AriaRole.CELL, GetByRoleOptions().setName(name))).isVisible()
++    }
++
++    private fun Page.deleteCard(name: String) {
++        getByRole(AriaRole.ROW, GetByRoleOptions().setName(name))
++            .getByRole(AriaRole.BUTTON).click()
++        assertThat(getByRole(AriaRole.CELL, GetByRoleOptions().setName(name))).not().isVisible()
++    }
++}
+\ No newline at end of file
+Index: src/main/kotlin/ch/ranil/kortti/domain/card/CardService.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/kotlin/ch/ranil/kortti/domain/card/CardService.kt b/src/main/kotlin/ch/ranil/kortti/domain/card/CardService.kt
+--- a/src/main/kotlin/ch/ranil/kortti/domain/card/CardService.kt	(revision 62779df1584720241f4fc3d0923312e4776edd0d)
++++ b/src/main/kotlin/ch/ranil/kortti/domain/card/CardService.kt	(date 1771534261769)
+@@ -39,13 +39,12 @@
+         )
+     }
+ 
+-    fun createCard(data: CardsController.CardFormData): Card {
++    fun createCard(data: CardsController.CardFormData) {
+         val card = Card(
+             type = data.type,
+             content = data.content.ifBlank { "MISSING" },
+         )
+         cardRepository.save(card)
+-        return card
+     }
+ 
+     fun getCards(): List<Card> {
