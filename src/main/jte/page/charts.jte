@@ -9,7 +9,6 @@ content = @`
             hx-get="/charts/dataset"
             hx-trigger="change"
             hx-swap="none"
-            hx-headers='{"Accept": "application/json"}'
             hx-on::after-request="updateMyChart(JSON.parse(event.detail.xhr.response))"
             aria-label="Select dataset type">
         @for (var datasetType: DatasetType.getEntries())
