@@ -1,11 +1,16 @@
 package ch.ranil.kortti
 
+import com.microsoft.playwright.BrowserType
 import com.microsoft.playwright.Page.GetByRoleOptions
 import com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat
 import com.microsoft.playwright.options.AriaRole
 import org.junit.jupiter.api.Test
 
 class MemesPageTest : AbstractPageTest() {
+
+    override fun modifyLaunchOptions(options: BrowserType.LaunchOptions): BrowserType.LaunchOptions {
+        return options.setSlowMo(10.0)
+    }
 
     @Test
     fun `should wait for meme image to load`() {

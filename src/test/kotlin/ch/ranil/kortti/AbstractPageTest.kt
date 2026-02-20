@@ -21,14 +21,18 @@ abstract class AbstractPageTest {
     protected lateinit var browser: Browser
     protected lateinit var page: Page
 
+    fun modifyLaunchOptions(options: BrowserType.LaunchOptions) = options
+
     @BeforeEach
     fun baseSetUp() {
         val isCi = System.getenv("CI") != null
         playwright = Playwright.create()
         browser = playwright.chromium().launch(
-            BrowserType.LaunchOptions()
-                .setHeadless(isCi)
-                .setSlowMo(if (isCi) 0.0 else 300.0)
+            modifyLaunchOptions(
+                BrowserType.LaunchOptions()
+                    .setHeadless(true)
+                    .setSlowMo(if (isCi) 0.0 else 300.0)
+            )
         )
         val context = browser.newContext()
         page = context.newPage()
