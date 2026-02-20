@@ -23,11 +23,12 @@ abstract class AbstractPageTest {
 
     @BeforeEach
     fun baseSetUp() {
+        val isCi = System.getenv("CI") != null
         playwright = Playwright.create()
         browser = playwright.chromium().launch(
             BrowserType.LaunchOptions()
-                //.setHeadless(false)
-                .setSlowMo(300.0)
+                .setHeadless(isCi)
+                .setSlowMo(if (isCi) 0.0 else 300.0)
         )
         val context = browser.newContext()
         page = context.newPage()
