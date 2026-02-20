@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test
 class MemesPageTest : AbstractPageTest() {
 
     override fun modifyLaunchOptions(options: BrowserType.LaunchOptions): BrowserType.LaunchOptions {
-        return options.setSlowMo(10.0)
+        return options.setSlowMo(100.0)
     }
 
     @Test
