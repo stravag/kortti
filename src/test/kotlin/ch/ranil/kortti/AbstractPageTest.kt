@@ -26,7 +26,7 @@ abstract class AbstractPageTest {
         playwright = Playwright.create()
         browser = playwright.chromium().launch(
             BrowserType.LaunchOptions()
-                .setHeadless(false)
+                //.setHeadless(false)
                 .setSlowMo(300.0)
         )
         val context = browser.newContext()
