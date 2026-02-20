@@ -23,7 +23,11 @@ jobs:
           distribution: 'temurin' # You can also use 'oracle' or 'zulu'
           cache: 'gradle'        # Built-in caching for faster runs
 
+      - name: Install Playwright Dependencies
+        run: npx playwright install-deps # Quickest way on GitHub runners
+
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
-        with:
-          arguments: test
+
+      - name: Run Tests
+        run: ./gradlew test
