@@ -1,0 +1,98 @@
+Subject: [PATCH] partial row update
+---
+Index: src/main/jte/component/cards-table-row.jte
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/jte/component/cards-table-row.jte b/src/main/jte/component/cards-table-row.jte
+new file mode 100644
+--- /dev/null	(date 1771602078273)
++++ b/src/main/jte/component/cards-table-row.jte	(date 1771602078273)
+@@ -0,0 +1,18 @@
++@import ch.ranil.kortti.domain.card.Card
++@import java.time.format.DateTimeFormatter
++@import java.time.format.FormatStyle
++
++@param Card card
++
++<tr id="card-${card.getId().getValue().toString()}">
++    <td>${card.getType().name()}</td>
++    <td>${card.getContent()}</td>
++    <td>${card.getCreatedAt().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT))}</td>
++    <td>
++        <button hx-delete="/cards/${card.getId().getValue().toString()}"
++                hx-target="#card-${card.getId().getValue().toString()}"
++                hx-swap="delete">
++            Delete
++        </button>
++    </td>
++</tr>
+Index: src/main/jte/page/cards.jte
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/jte/page/cards.jte b/src/main/jte/page/cards.jte
+--- a/src/main/jte/page/cards.jte	(revision 6925decfee02dd62f91d7597f4665ae2162c0cf0)
++++ b/src/main/jte/page/cards.jte	(date 1771602255588)
+@@ -8,7 +8,7 @@
+         <!-- form to create a new card -->
+         <form hx-post="/cards"
+               hx-target="#cards-table-body"
+-              hx-swap="innerHTML">
++              hx-swap="beforeend">
+             <fieldset class="grid">
+                 <select name="type" aria-label="Type" required>
+                     @for(var type : CardType.getEntries())
+Index: src/main/jte/component/cards-table-body.jte
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/jte/component/cards-table-body.jte b/src/main/jte/component/cards-table-body.jte
+--- a/src/main/jte/component/cards-table-body.jte	(revision 6925decfee02dd62f91d7597f4665ae2162c0cf0)
++++ b/src/main/jte/component/cards-table-body.jte	(date 1771602096667)
+@@ -1,21 +1,8 @@
+ @import ch.ranil.kortti.domain.card.Card
+-@import java.time.format.DateTimeFormatter
+-@import java.time.format.FormatStyle
+ @import java.util.List
+ 
+ @param List<Card> cards
+ 
+ @for(var card : cards)
+-    <tr id="card-${card.getId().getValue().toString()}">
+-        <td>${card.getType().name()}</td>
+-        <td>${card.getContent()}</td>
+-        <td>${card.getCreatedAt().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT))}</td>
+-        <td>
+-            <button hx-delete="/cards/${card.getId().getValue().toString()}"
+-                    hx-target="#card-${card.getId().getValue().toString()}"
+-                    hx-swap="delete">
+-                Delete
+-            </button>
+-        </td>
+-    </tr>
++    @template.component.cards-table-row(card = card)
+ @endfor
+Index: src/main/kotlin/ch/ranil/kortti/web/CardsController.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/kotlin/ch/ranil/kortti/web/CardsController.kt b/src/main/kotlin/ch/ranil/kortti/web/CardsController.kt
+--- a/src/main/kotlin/ch/ranil/kortti/web/CardsController.kt	(revision 6925decfee02dd62f91d7597f4665ae2162c0cf0)
++++ b/src/main/kotlin/ch/ranil/kortti/web/CardsController.kt	(date 1771602140711)
+@@ -32,9 +32,8 @@
+     @PostMapping("/cards")
+     fun createCard(data: CardFormData): String {
+         sleepAtLeast(500.milliseconds)
+-        cardService.createCard(data)
+-        val cards = cardService.getCards()
+-        return templates.componentCardsTableBody(cards).render()
++        val card = cardService.createCard(data)
++        return templates.componentCardsTableRow(card).render()
+     }
+ 
+     @DeleteMapping("/cards/{id}")
