@@ -39,7 +39,7 @@ class MemesController(
     @PostMapping("/meme-broadcast")
     fun broadcastMeme() {
         val event = SseEmitter.event()
-            .name("meme")
+            .name(MEME_MSG_TYPE)
             .data("<img src=\"${memes.random()}\">")
 
         emitters.forEach { emitter ->
@@ -71,4 +71,8 @@ class MemesController(
         "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHQ2eWNxa29ieW8zcGxjZXhiZWpjZmY3OHFwZGZ5Z2N0bzZteWp4YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/FspLvJQlQACXu/giphy.gif",
         "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2ZvMGQxNHhxM3Z5NHZvdTRyMHY1MnBkYXU5ZDIwam1sN2phamJ3MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xTiTnwgQ8Wjs1sUB4k/giphy.gif",
     )
+
+    companion object {
+        const val MEME_MSG_TYPE = "meme"
+    }
 }
