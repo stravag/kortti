@@ -30,7 +30,7 @@ abstract class AbstractPageTest {
         browser = playwright.chromium().launch(
             modifyLaunchOptions(
                 BrowserType.LaunchOptions()
-                    .setHeadless(true)
+                    .setHeadless(isCi)
                     .setSlowMo(if (isCi) 0.0 else 300.0)
             )
         )
