@@ -3,6 +3,9 @@ package ch.ranil.kortti.domain.card
 import ch.ranil.kortti.web.CardsController
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 @Service
 class CardService(
@@ -40,6 +43,7 @@ class CardService(
     }
 
     fun createCard(data: CardsController.CardFormData): Card {
+        sleepAtMost(300.milliseconds)
         val card = Card(
             type = data.type,
             content = data.content.ifBlank { "MISSING" },
@@ -49,10 +53,16 @@ class CardService(
     }
 
     fun getCards(): List<Card> {
+        sleepAtMost(1.seconds)
         return cardRepository.getAll()
     }
 
     fun deleteCard(id: CardId) {
         cardRepository.delete(id)
+    }
+
+    private fun sleepAtMost(duration: Duration = 1.seconds) {
+        val sleepDuration = (Math.random() * duration.inWholeMilliseconds).toLong()
+        Thread.sleep(sleepDuration)
     }
 }
