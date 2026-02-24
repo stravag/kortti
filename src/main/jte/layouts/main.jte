@@ -9,17 +9,7 @@
 <head>
     <title>${title}</title>
     <link rel="stylesheet" href="/webjars/picocss__pico/2.1.1/css/pico.css">
-    <style>
-        /* Hide the spinner by default */
-        .spinner {
-            display: none;
-        }
-
-        /* Show it only when the button is in a request state */
-        .htmx-request .spinner {
-            display: inline;
-        }
-    </style>
+    <link rel="stylesheet" href="/stylesheet.css">
     <script src="/webjars/htmx.org/2.0.8/dist/htmx.min.js"></script>
     <script src="/webjars/htmx-ext-sse/2.2.4/dist/sse.js"></script>
 </head>
