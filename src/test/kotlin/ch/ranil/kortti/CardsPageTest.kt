@@ -12,6 +12,9 @@ class CardsPageTest : AbstractPageTest() {
     @Test
     fun `can create and delete card`() {
         navigate("/")
+        page.deleteCard("To the moon")
+        page.deleteCard("You're old mate!")
+
         page.addCard("test1")
         page.addCard("test2")
         page.addCard("test3")
